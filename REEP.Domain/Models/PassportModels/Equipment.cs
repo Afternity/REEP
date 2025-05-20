@@ -1,5 +1,4 @@
-﻿using REEP.Domain.Models.PassportModels.PassportHistoryModels;
-using REEP.Domain.Models.PassportModels.PassportTypeModels;
+﻿using REEP.Domain.Models.PassportModels.PassportTypeModels;
 
 namespace REEP.Domain.Models.PassportModels
 {
@@ -11,8 +10,7 @@ namespace REEP.Domain.Models.PassportModels
         public Guid EquipmentTypeId { get; set; }
         public EquipmentType EquipmentType { get; set; } = null!;
         public Guid TechnicalParameterId { get; set; }
-        public TechnicalParameter TechnicalParameter { get; set; } = null!;
-        public IList<EquipmentHistory> EquipmentHistories { get; set; } = [];
+        public TechnicalParameter? TechnicalParameter { get; set; } = null!;
         public IList<EquipmentPassport> EquipmentPassports { get; set; } = [];
     }
 }
