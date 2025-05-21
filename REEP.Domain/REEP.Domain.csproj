@@ -7,8 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\HistoryModels\**" />
+    <EmbeddedResource Remove="Models\HistoryModels\**" />
+    <None Remove="Models\HistoryModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\ContractModels\" />
-    <Folder Include="Models\HistoryModels\" />
     <Folder Include="Models\MaintenanceModels\" />
     <Folder Include="Models\UserModels\" />
   </ItemGroup>
