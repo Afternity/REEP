@@ -1,7 +1,4 @@
-﻿using REEP.Domain.Models.PassportModels.PassportTypeModels;
-using REEP.Domain.Models.UserModels;
-
-namespace REEP.Domain.Models.PassportModels.PassportHistory
+﻿namespace REEP.Domain.Models.PassportModels.PassportHistory
 {
     public class EquipmentParametersHistory
     {

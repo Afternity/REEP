@@ -1,4 +1,5 @@
 ﻿using REEP.Domain.Models.ContractModels.ContractManyToManyModels;
+using REEP.Domain.Models.WarrantyModels;
 
 namespace REEP.Domain.Models.ContractModels
 {
@@ -11,5 +12,6 @@ namespace REEP.Domain.Models.ContractModels
         public DateTime DateEnd { get; set; }
         public IList<ContractAndPayment> ContractsAndPayments { get; set; } = [];
         public IList<ContractAndSupplier> ContractsAndSuppliers { get; set; } = [];
+        public IList<Warranty> Warranties { get; set; } = [];
     }
 }
