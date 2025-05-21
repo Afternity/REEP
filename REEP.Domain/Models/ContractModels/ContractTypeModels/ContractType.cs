@@ -1,14 +1,14 @@
 ﻿using REEP.Domain.InterfaceModels;
 
-namespace REEP.Domain.Models.WarrantyModels.WarrantyTypeModels
+namespace REEP.Domain.Models.ContractModels.ContractTypeModels
 {
-    public class WarrantyType : IAuditable
+    public class ContractType : IAuditable
     {
         public Guid Id { get; set; }
         public string Type { get; set; } = string.Empty;
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public IList<Warranty> Warranties { get; set; } = [];
+        public IList<Contract> Contracts { get; set; } = [];
     }
 }

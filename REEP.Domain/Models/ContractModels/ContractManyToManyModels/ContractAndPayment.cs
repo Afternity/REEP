@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using REEP.Domain.InterfaceModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace REEP.Domain.Models.ContractModels.ContractManyToManyModels
 {
-    public class ContractAndPayment
+    public class ContractAndPayment : IAuditable
     {
         [Key]
         public Guid ContractId { get; set; }
@@ -12,6 +13,7 @@ namespace REEP.Domain.Models.ContractModels.ContractManyToManyModels
         public Guid PaymentId { get; set; }
         public Payment Payment { get; set; } = null!;
 
+        public bool IsActive { get; set; } = true;
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
     }

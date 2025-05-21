@@ -1,9 +1,10 @@
 ﻿using REEP.Domain.Models.PassportModels;
 using REEP.Domain.Models.UserModels.UserTypeModels;
+using REEP.Domain.InterfaceModels;
 
 namespace REEP.Domain.Models.UserModels
 {
-    public class User
+    public class User : IAuditable
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
@@ -13,6 +14,8 @@ namespace REEP.Domain.Models.UserModels
         public string? OtherContacts {  get; set; }
         public byte[] PasswordHash { get; set; } = new byte[32];
         public byte[] PasswordSalt { get; set; } = new byte[32];
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdateDate { get; set; }
 
         public Guid UserTypeId { get; set; }
         public UserType UserType { get; set; } = null!;

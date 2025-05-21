@@ -1,12 +1,15 @@
 ﻿using REEP.Domain.Models.PassportModels.PassportHistory;
 using REEP.Domain.Models.UserModels;
+using REEP.Domain.InterfaceModels;
 
 namespace REEP.Domain.Models.PassportModels
 {
-    public class EquipmentPassport
+    public class EquipmentPassport : IAuditable
     {
         public Guid Id { get; set; }
         public string Number { get; set; } = string.Empty;
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdateDate { get; set; }
 
         public Guid UserUsedId { get; set; }
         public User UserUsed { get; set; } = null!;

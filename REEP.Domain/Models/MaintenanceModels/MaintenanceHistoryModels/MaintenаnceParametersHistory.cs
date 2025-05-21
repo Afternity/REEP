@@ -15,6 +15,8 @@
 
         public string MaintenenceType {  get; set; } = string.Empty;
 
+        public Guid ModifiedByUserId { get; set; }
+        public string ModifiedByUserName { get; set; } = string.Empty;
         public Guid MaintenanceId { get; set; }
     }
 }
