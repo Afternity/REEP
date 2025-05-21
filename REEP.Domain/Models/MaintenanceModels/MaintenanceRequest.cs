@@ -9,6 +9,9 @@ namespace REEP.Domain.Models.MaintenanceModels
         public string Description { get; set; } = string.Empty;
         public DateTime DateOfReceipt { get; set; } = DateTime.UtcNow;
         public DateTime DateOfRegistration {  get; set; }
+
+        public Guid MaintenanceId { get; set; }
+        public Maintenance? Maintenance { get; set; } 
         public Guid UserUsedId { get; set; }
         public User User { get; set; } = null!;
         public IList<User> Admins { get; set; } = [];

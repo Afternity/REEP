@@ -10,7 +10,7 @@ namespace REEP.Domain.Models.PassportModels.PassportHistory
         public string ChangeReason { get; set; } = "Update";
         public string Comment { get; set; } = string.Empty;
 
-        public string Number { get; set; } = string.Empty;
+        public string EquipmentPassportNumber { get; set; } = string.Empty;
 
         public string UserUsedName { get; set; } = string.Empty;
         public string UserGrantAccessName { get; set; } = string.Empty;
@@ -21,9 +21,9 @@ namespace REEP.Domain.Models.PassportModels.PassportHistory
         public string LocationName { get; set; } = string.Empty;
 
         public string StatusName { get; set; } = string.Empty;
-        public bool IsActive { get; set; } 
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public bool StatusIsActive { get; set; } 
+        public DateTime? StatusStartDate { get; set; }
+        public DateTime? StatusEndDate { get; set; }
 
         public string ParameterDescription { get; set; } = string.Empty;
 

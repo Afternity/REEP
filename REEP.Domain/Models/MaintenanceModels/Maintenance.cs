@@ -1,4 +1,5 @@
-﻿using REEP.Domain.Models.MaintenanceModels.MaintenanceTypeModels;
+﻿using REEP.Domain.Models.MaintenanceModels.MaintenanceHistoryModels;
+using REEP.Domain.Models.MaintenanceModels.MaintenanceTypeModels;
 
 namespace REEP.Domain.Models.MaintenanceModels
 {
@@ -12,5 +13,7 @@ namespace REEP.Domain.Models.MaintenanceModels
         public DateTime DateOfEnd { get; set; }
         public Guid MaintenanceTypeId { get; set; }
         public MaintenanceType MaintenanceType { get; set; } = null!;
+        public IList<MaintenenceParametersHistory> HistoryRecords { get; set; } = [];
+        public IList<MaintenanceRequest> MaintenanceRequests { get; set; } = [];
     }
 }

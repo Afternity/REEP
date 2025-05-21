@@ -18,6 +18,6 @@ namespace REEP.Domain.Models.PassportModels
         public Location Location { get; set; } = null!;
         public Guid StatusId { get; set; }
         public Status Status { get; set; } = null!;
-        public IList<EquipmentPassportHistory> HistoryRecords { get; set; } = null!;
+        public IList<EquipmentParametersHistory> HistoryRecords { get; set; } = null!;
     }
 }

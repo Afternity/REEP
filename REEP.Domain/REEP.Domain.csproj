@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Models\ContractModels\" />
-    <Folder Include="Models\MaintenanceModels\" />
     <Folder Include="Models\UserModels\" />
   </ItemGroup>
 
