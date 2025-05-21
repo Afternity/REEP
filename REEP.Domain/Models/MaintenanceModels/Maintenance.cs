@@ -10,7 +10,7 @@ namespace REEP.Domain.Models.MaintenanceModels
         public bool IsActive { get; set; } = false;
         public string TotalDescription { get; set; } = string.Empty;
         public DateTime? DateOfStart { get; set; }
-        public DateTime? PossibleRepairTime { get; set; }
+        public TimeSpan? PossibleRepairTime { get; set; }
         public DateTime? DateOfEnd { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }

@@ -10,7 +10,7 @@
         public bool MaintenanceIsActive { get; set; } = false;
         public string MaintenanceTatalDescription { get; set; } = string.Empty;
         public DateTime? MaintenanceDateOfStart { get; set; } 
-        public DateTime? MaintenancePossibleRepairTime { get; set; } 
+        public TimeSpan? MaintenancePossibleRepairTime { get; set; } 
         public DateTime? MaintenanceDateOfEnd { get; set; } 
 
         public string MaintenenceType {  get; set; } = string.Empty;

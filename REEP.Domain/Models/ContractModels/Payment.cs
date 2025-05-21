@@ -9,7 +9,7 @@ namespace REEP.Domain.Models.ContractModels
         public Guid Id { get; set; }
         public decimal Price { get; set; } = decimal.Zero;
         public DateTime FirstPay { get; set; }
-        public DateTime PeriodPay { get; set; }
+        public TimeSpan PeriodPay { get; set; }
         public DateTime LastPay { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
