@@ -12,8 +12,9 @@ namespace REEP.Domain.Models.MaintenanceModels
 
         public Guid MaintenanceId { get; set; }
         public Maintenance? Maintenance { get; set; } 
-        public Guid UserUsedId { get; set; }
-        public User User { get; set; } = null!;
-        public IList<User> Admins { get; set; } = [];
+        public Guid CreateByUserId { get; set; }
+        public User CreateBy { get; set; } = null!;
+        public Guid ApprovedByUserId { get; set; }
+        public User? ApprovedBy { get; set; } 
     }
 }

@@ -7,13 +7,13 @@ namespace REEP.Domain.Models.MaintenanceModels
     {
         public Guid Id { get; set; }
         public bool IsActive { get; set; } = false;
-        public string TatalDescription { get; set; } = string.Empty;
-        public DateTime DateOfStart { get; set; }
-        public DateTime PossibleRepairTime { get; set; }
-        public DateTime DateOfEnd { get; set; }
+        public string TotalDescription { get; set; } = string.Empty;
+        public DateTime? DateOfStart { get; set; }
+        public DateTime? PossibleRepairTime { get; set; }
+        public DateTime? DateOfEnd { get; set; }
         public Guid MaintenanceTypeId { get; set; }
         public MaintenanceType MaintenanceType { get; set; } = null!;
-        public IList<MaintenenceParametersHistory> HistoryRecords { get; set; } = [];
+        public IList<MaintenаnceParametersHistory> HistoryRecords { get; set; } = [];
         public IList<MaintenanceRequest> MaintenanceRequests { get; set; } = [];
     }
 }
