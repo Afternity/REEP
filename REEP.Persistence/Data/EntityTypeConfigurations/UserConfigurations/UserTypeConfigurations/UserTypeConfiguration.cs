@@ -10,6 +10,8 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.UserConfigurations.User
         {
             builder.HasKey(userType => userType.Id);
 
+            builder.HasIndex(userType => userType.Type)
+                .IsUnique();
             builder.HasIndex(userType => userType.CreateDate);
             builder.HasIndex(userType => userType.UpdateDate);
 

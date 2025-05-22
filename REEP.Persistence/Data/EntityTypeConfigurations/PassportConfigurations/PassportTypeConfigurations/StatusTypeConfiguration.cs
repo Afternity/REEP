@@ -10,6 +10,8 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations.
         {
             builder.HasKey(statusType => statusType.Id);
 
+            builder.HasIndex(statusType => statusType.Type)
+                .IsUnique();
             builder.HasIndex(statusType => statusType.CreateDate);
             builder.HasIndex(statusType => statusType.UpdateDate);
 

@@ -10,6 +10,8 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.WarrantyConfigurations.
         {
             builder.HasKey(warrantyType => warrantyType.Id);
 
+            builder.HasIndex(warrantyType => warrantyType.Type)
+                .IsUnique();
             builder.HasIndex(warrantyType => warrantyType.CreateDate);
             builder.HasIndex(warrantyType => warrantyType.UpdateDate);
 

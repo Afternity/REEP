@@ -10,6 +10,8 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations.
         {
             builder.HasKey(equipmentType => equipmentType.Id);
 
+            builder.HasIndex(equipmentType => equipmentType.Type)
+                .IsUnique();
             builder.HasIndex(equipmentType => equipmentType.CreateDate);
             builder.HasIndex(equipmentType => equipmentType.UpdateDate);
 
