@@ -8,20 +8,24 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.UserConfigurations.User
     {
         public void Configure(EntityTypeBuilder<UserType> builder)
         {
-            builder.HasKey(user => user.Id);
+            builder.HasKey(userType => userType.Id);
 
-            builder.Property(user => user.Type)
+            builder.HasIndex(userType => userType.CreateDate);
+            builder.HasIndex(userType => userType.UpdateDate);
+
+            builder.Property(userType => userType.Type)
                 .IsRequired()
                 .HasMaxLength(50);
-            builder.Property(user => user.CreateDate)
+            builder.Property(userType => userType.CreateDate)
                 .IsRequired()
                 .HasColumnType("timestamp with time zone");
-            builder.Property(user => user.UpdateDate)
+            builder.Property(userType => userType.UpdateDate)
                 .HasColumnType("timestamp with time zone");
 
             builder.HasMany(userType => userType.Users)
                 .WithOne(user => user.UserType)
                 .HasForeignKey(user => user.UserTypeId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

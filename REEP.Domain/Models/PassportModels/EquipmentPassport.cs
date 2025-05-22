@@ -1,6 +1,7 @@
 ﻿using REEP.Domain.Models.PassportModels.PassportHistory;
 using REEP.Domain.Models.UserModels;
 using REEP.Domain.InterfaceModels;
+using REEP.Domain.Models.WarrantyModels;
 
 namespace REEP.Domain.Models.PassportModels
 {
@@ -11,10 +12,12 @@ namespace REEP.Domain.Models.PassportModels
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public Guid UserUsedId { get; set; }
-        public User UserUsed { get; set; } = null!;
+        public Guid? UserUsedId { get; set; }
+        public User? UserUsed { get; set; } = null!;
         public Guid UserGrantAccessId { get; set; }
         public User UserGrantAccess { get; set; } = null!;
+        public Guid WarrantyId { get; set; }
+        public Warranty Warranty { get; set; } = null!;
         public Guid EquipmentId { get; set; }
         public Equipment Equipment { get; set; } = null!;
         public Guid LocationId { get; set; }

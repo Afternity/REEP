@@ -10,6 +10,9 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.WarrantyConfigurations.
         {
             builder.HasKey(warrantyType => warrantyType.Id);
 
+            builder.HasIndex(warrantyType => warrantyType.CreateDate);
+            builder.HasIndex(warrantyType => warrantyType.UpdateDate);
+
             builder.Property(warrantyType => warrantyType.Type)
                 .IsRequired()
                 .HasMaxLength(50);
@@ -22,6 +25,7 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.WarrantyConfigurations.
             builder.HasMany(warrantyType => warrantyType.Warranties)
                 .WithOne(warranty => warranty.WarrantyType)
                 .HasForeignKey(warranty => warranty.WarrantyTypeId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
