@@ -27,6 +27,6 @@
         public Guid ModifiedByUserId { get; set; }
         public string ModifiedByUserName { get; set; } = string.Empty;
 
-        public Guid EquipmentPassportId { get; set; }
+        public Guid? EquipmentPassportId { get; set; }
     }
 }
