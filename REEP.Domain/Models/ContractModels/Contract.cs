@@ -17,8 +17,8 @@ namespace REEP.Domain.Models.ContractModels
 
         public Guid ContractTypeId { get; set; }
         public ContractType ContractType { get; set; } = null!;
-        public IList<ContractAndPayment> ContractsAndPayments { get; set; } = [];
-        public IList<ContractAndSupplier> ContractsAndSuppliers { get; set; } = [];
-        public IList<Warranty> Warranties { get; set; } = [];
+        public ICollection<ContractAndPayment> ContractsAndPayments { get; set; } = [];
+        public ICollection<ContractAndSupplier> ContractsAndSuppliers { get; set; } = [];
+        public ICollection<Warranty> Warranties { get; set; } = [];
     }
 }

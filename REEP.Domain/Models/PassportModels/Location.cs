@@ -11,6 +11,6 @@ namespace REEP.Domain.Models.PassportModels
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public IList<EquipmentPassport> EquipmentPassports { get; set; } = [];
+        public ICollection<EquipmentPassport> EquipmentPassports { get; set; } = [];
     }
 }

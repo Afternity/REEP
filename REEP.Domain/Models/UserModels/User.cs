@@ -20,8 +20,9 @@ namespace REEP.Domain.Models.UserModels
 
         public Guid UserTypeId { get; set; }
         public UserType UserType { get; set; } = null!;
-        public IList<EquipmentPassport> EquipmentPassports { get; set; } = [];
-        public IList<MaintenanceRequest> CreatedRequests { get; set; } = [];
-        public IList<MaintenanceRequest> ApprovedRequests { get; set; } = [];
+        public ICollection<EquipmentPassport> UserUsedEquipmentPassports { get; set; } = [];
+        public ICollection<EquipmentPassport> UserGrantAccessEquipmentPassports { get; set; } = [];
+        public ICollection<MaintenanceRequest> CreatedRequests { get; set; } = [];
+        public ICollection<MaintenanceRequest> ApprovedRequests { get; set; } = [];
     }
 }

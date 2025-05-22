@@ -13,8 +13,6 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.UserConfigurations
 
             builder.HasIndex(user => user.Email)
                 .IsUnique();
-            builder.HasIndex(user => user.PasswordHash);
-            builder.HasIndex(user => user.PasswordSalt);
 
             builder.Property(user => user.FirstName)
                 .IsRequired()
@@ -32,6 +30,7 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.UserConfigurations
                 .HasMaxLength(100);
             builder.Property(user => user.PasswordHash)
                 .IsRequired()
+                .HasMaxLength(64)
                 .HasColumnType("bytea");
             builder.Property(user => user.PasswordSalt)
                 .IsRequired()

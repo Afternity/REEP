@@ -14,6 +14,6 @@ namespace REEP.Domain.Models.PassportModels
 
         public Guid StatusTypeId { get; set; }
         public StatusType StatusType { get; set; } = null!;
-        public IList<EquipmentPassport> EquipmentPassports { get; set; } = [];
+        public ICollection<EquipmentPassport> EquipmentPassports { get; set; } = [];
     }
 }

@@ -9,6 +9,6 @@ namespace REEP.Domain.Models.UserModels.UserTypeModels
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public IList<User> Users { get; set; } = [];
+        public ICollection<User> Users { get; set; } = [];
     }
 }

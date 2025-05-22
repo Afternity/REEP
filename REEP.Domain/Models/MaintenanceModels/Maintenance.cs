@@ -17,7 +17,7 @@ namespace REEP.Domain.Models.MaintenanceModels
 
         public Guid MaintenanceTypeId { get; set; }
         public MaintenanceType MaintenanceType { get; set; } = null!;
-        public IList<MaintenаnceParametersHistory> HistoryRecords { get; set; } = [];
-        public IList<MaintenanceRequest> MaintenanceRequests { get; set; } = [];
+        public ICollection<MaintenаnceParametersHistory> HistoryRecords { get; set; } = [];
+        public ICollection<MaintenanceRequest> MaintenanceRequests { get; set; } = [];
     }
 }

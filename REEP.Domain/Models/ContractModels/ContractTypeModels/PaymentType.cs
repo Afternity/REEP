@@ -9,6 +9,6 @@ namespace REEP.Domain.Models.ContractModels.ContractTypeModels
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public IList<Payment> Payments { get; set; } = [];
+        public ICollection<Payment> Payments { get; set; } = [];
     }
 }

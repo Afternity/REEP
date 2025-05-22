@@ -16,6 +16,6 @@ namespace REEP.Domain.Models.ContractModels
 
         public Guid PaymentTypeId { get; set; }
         public PaymentType PaymentType { get; set; } = null!;
-        public IList<ContractAndPayment> ContractsAndPayments { get; set; } = [];
+        public ICollection<ContractAndPayment> ContractsAndPayments { get; set; } = [];
     }
 }

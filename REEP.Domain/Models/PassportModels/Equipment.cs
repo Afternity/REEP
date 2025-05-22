@@ -14,6 +14,6 @@ namespace REEP.Domain.Models.PassportModels
         public EquipmentType EquipmentType { get; set; } = null!;
         public Guid TechnicalParameterId { get; set; }
         public TechnicalParameter? TechnicalParameter { get; set; } = null!;
-        public IList<EquipmentPassport> EquipmentPassports { get; set; } = [];
+        public ICollection<EquipmentPassport> EquipmentPassports { get; set; } = [];
     }
 }

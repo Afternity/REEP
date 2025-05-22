@@ -10,6 +10,6 @@ namespace REEP.Domain.Models.MaintenanceModels.MaintenanceTypeModels
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public IList<Maintenance> Maintenances { get; set; } = [];
+        public ICollection<Maintenance> Maintenances { get; set; } = [];
     }
 }

@@ -9,6 +9,6 @@ namespace REEP.Domain.Models.PassportModels
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public IList<Equipment> Equipments { get; set; } = [];
+        public ICollection<Equipment> Equipments { get; set; } = [];
     }
 }

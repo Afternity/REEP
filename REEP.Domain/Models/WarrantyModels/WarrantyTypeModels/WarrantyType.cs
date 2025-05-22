@@ -9,6 +9,6 @@ namespace REEP.Domain.Models.WarrantyModels.WarrantyTypeModels
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public IList<Warranty> Warranties { get; set; } = [];
+        public ICollection<Warranty> Warranties { get; set; } = [];
     }
 }

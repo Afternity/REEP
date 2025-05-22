@@ -19,6 +19,6 @@ namespace REEP.Domain.Models.ContractModels
 
         public Guid SupplierTypeId { get; set; }
         public SupplierType SupplierType { get; set; } = null!;
-        public IList<ContractAndSupplier> ContractsAndSuppliers { get; set; } = [];
+        public ICollection<ContractAndSupplier> ContractsAndSuppliers { get; set; } = [];
     }
 }

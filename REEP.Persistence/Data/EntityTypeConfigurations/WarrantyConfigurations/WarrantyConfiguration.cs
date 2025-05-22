@@ -10,6 +10,9 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.WarrantyConfigurations
         {
             builder.HasKey(warranty => warranty.Id);
 
+            builder.HasIndex(warranty => warranty.DateStart);
+            builder.HasIndex(warranty => warranty.DateEnd);
+
             builder.Property(warranty => warranty.Name)
                 .IsRequired()
                 .HasMaxLength(50);
