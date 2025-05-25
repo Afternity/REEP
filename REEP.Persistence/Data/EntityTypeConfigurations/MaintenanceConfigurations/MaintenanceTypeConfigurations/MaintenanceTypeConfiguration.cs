@@ -20,6 +20,8 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.MaintenanceConfiguratio
             builder.Property(maintenanceType => maintenanceType.Type)
                 .IsRequired()
                 .HasMaxLength(50);
+            builder.Property(maintenanceType => maintenanceType.Description)
+                .HasMaxLength(500);
             builder.Property(maintenanceType => maintenanceType.CreatedAt)
                 .IsRequired()
                 .HasColumnType("timestamp with time zone")
