@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace REEP.Domain.Models.ContractModels.ContractManyToManyModels
 {
-    public class ContractAndPayment : IAuditable
+    public class ContractAndPayment : IAuditable, ISoftDeletable
     {
         [Key]
         public Guid ContractId { get; set; }
@@ -16,5 +16,7 @@ namespace REEP.Domain.Models.ContractModels.ContractManyToManyModels
         public bool IsActive { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

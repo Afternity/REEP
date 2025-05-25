@@ -5,7 +5,7 @@ using REEP.Domain.Models.MaintenanceModels;
 
 namespace REEP.Domain.Models.UserModels
 {
-    public class User : IAuditable
+    public class User : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
@@ -17,6 +17,8 @@ namespace REEP.Domain.Models.UserModels
         public byte[] PasswordSalt { get; set; } = new byte[32];
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Guid UserTypeId { get; set; }
         public UserType UserType { get; set; } = null!;

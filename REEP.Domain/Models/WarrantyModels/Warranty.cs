@@ -5,7 +5,7 @@ using REEP.Domain.InterfaceModels;
 
 namespace REEP.Domain.Models.WarrantyModels
 {
-    public class Warranty : IAuditable
+    public class Warranty : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public string Name {get; set; } = string.Empty;
@@ -14,6 +14,8 @@ namespace REEP.Domain.Models.WarrantyModels
         public DateTime DateEnd { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Guid ContractId { get; set; }
         public Contract Contract { get; set; } = null!;

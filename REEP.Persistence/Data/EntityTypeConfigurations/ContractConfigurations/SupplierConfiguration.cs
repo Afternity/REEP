@@ -13,6 +13,10 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations
 
             builder.HasIndex(supplier => supplier.Email)
                 .IsUnique();
+            builder.HasIndex(supplier => supplier.CreatedAt);
+            builder.HasIndex(supplier => supplier.UpdatedAt);
+            builder.HasIndex(supplier => supplier.DeletedAt);
+            builder.HasIndex(supplier => supplier.IsDeleted);
 
             builder.Property(supplier => supplier.FirstName)
                 .HasMaxLength(50);
@@ -27,11 +31,18 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations
                 .HasAnnotation("RegularExpression", @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
             builder.Property(supplier => supplier.OtherContacts)
                 .HasMaxLength(100);
-            builder.Property(supplier => supplier.CreateDate)
+            builder.Property(supplier => supplier.CreatedAt)
              .IsRequired()
-             .HasColumnType("timestamp with time zone");
-            builder.Property(supplier => supplier.UpdateDate)
+             .HasColumnType("timestamp with time zone")
+             .HasDefaultValueSql("NOW()");
+            builder.Property(supplier => supplier.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(supplier => supplier.DeletedAt)
+                .HasColumnType("timestamp with time zone");
+            builder.Property(supplier => supplier.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasOne(supplier => supplier.SupplierType)
                 .WithMany(supplierType => supplierType.Suppliers)

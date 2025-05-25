@@ -12,10 +12,15 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations
 
             builder.HasIndex(payment => payment.FirstPay);
             builder.HasIndex(payment => payment.LastPay);
-            builder.HasIndex(payment => payment.CreateDate);
-            builder.HasIndex(payment => payment.UpdateDate);
+            builder.HasIndex(payment => payment.CreatedAt);
+            builder.HasIndex(payment => payment.UpdatedAt);
+            builder.HasIndex(payment => payment.DeletedAt);
+            builder.HasIndex(payment => payment.IsDeleted);
 
-            // пропустил поле Price не помню как работать с decimal
+            builder.Property(payment => payment.Price)
+                .IsRequired()
+                .HasColumnType("numeric(18, 2)")
+                .HasDefaultValue(0);
             builder.Property(payment => payment.FirstPay)
                 .IsRequired()
                 .HasColumnType("date");
@@ -25,11 +30,18 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations
             builder.Property(payment => payment.LastPay)
                 .IsRequired()
                 .HasColumnType("date");
-            builder.Property(payment => payment.CreateDate)
+            builder.Property(payment => payment.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(payment => payment.CreatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(payment => payment.UpdateDate)
+            builder.Property(payment => payment.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(payment => payment.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasOne(payment => payment.PaymentType)
                 .WithMany(paymentType => paymentType.Payments)

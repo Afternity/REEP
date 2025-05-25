@@ -3,12 +3,14 @@ using REEP.Domain.Models.PassportModels.PassportTypeModels;
 
 namespace REEP.Domain.Models.PassportModels
 {
-    public class Equipment : IAuditable
+    public class Equipment : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Guid EquipmentTypeId { get; set; }
         public EquipmentType EquipmentType { get; set; } = null!;

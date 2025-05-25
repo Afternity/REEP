@@ -5,15 +5,17 @@ using REEP.Domain.InterfaceModels;
 
 namespace REEP.Domain.Models.ContractModels
 {
-    public class Contract : IAuditable
+    public class Contract : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public DateTime DateStart { get; set; }
-        public DateTime DateEnd { get; set; }
+        public DateTime StartedAt { get; set; }
+        public DateTime EndedAt { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Guid ContractTypeId { get; set; }
         public ContractType ContractType { get; set; } = null!;

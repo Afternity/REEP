@@ -4,16 +4,18 @@ using REEP.Domain.Models.ContractModels;
 
 namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations
 {
-    public class ContractConfigurtaion : IEntityTypeConfiguration<Contract>
+    public class ContractConfiguration : IEntityTypeConfiguration<Contract>
     {
         public void Configure(EntityTypeBuilder<Contract> builder)
         {
             builder.HasKey(contract => contract.Id);
 
-            builder.HasIndex(contract => contract.DateStart);
-            builder.HasIndex(contract => contract.DateEnd);
-            builder.HasIndex(contract => contract.CreateDate);
-            builder.HasIndex(contract => contract.UpdateDate);
+            builder.HasIndex(contract => contract.StartedAt);
+            builder.HasIndex(contract => contract.EndedAt);
+            builder.HasIndex(contract => contract.CreatedAt);
+            builder.HasIndex(contract => contract.UpdatedAt);
+            builder.HasIndex(contract => contract.DeletedAt);
+            builder.HasIndex(contract => contract.IsDeleted);
 
             builder.Property(contract => contract.Name)
                 .IsRequired()
@@ -21,17 +23,24 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations
             builder.Property(contract => contract.Description)
                 .IsRequired()
                 .HasMaxLength(50);
-            builder.Property(contract => contract.DateStart)
+            builder.Property(contract => contract.StartedAt)
                 .IsRequired()
                 .HasColumnType("date");
-            builder.Property(contract => contract.DateEnd)
+            builder.Property(contract => contract.EndedAt)
                 .IsRequired()
                 .HasColumnType("date");
-            builder.Property(contract => contract.CreateDate)
+            builder.Property(contract => contract.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(contract => contract.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(contract => contract.UpdateDate)
+            builder.Property(contract => contract.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(contract => contract.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasOne(contract => contract.ContractType)
                 .WithMany(contractType => contractType.Contracts)

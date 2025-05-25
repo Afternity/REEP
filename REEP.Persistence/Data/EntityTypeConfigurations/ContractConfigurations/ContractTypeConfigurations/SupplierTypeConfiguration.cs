@@ -12,17 +12,26 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations.
 
             builder.HasIndex(supplierType => supplierType.Type)
                 .IsUnique();
-            builder.HasIndex(supplierType => supplierType.CreateDate);
-            builder.HasIndex(supplierType => supplierType.UpdateDate);
+            builder.HasIndex(supplierType => supplierType.CreatedAt);
+            builder.HasIndex(supplierType => supplierType.CreatedAt);
+            builder.HasIndex(supplierType => supplierType.DeletedAt);
+            builder.HasIndex(supplierType => supplierType.IsDeleted);
 
             builder.Property(supplierType => supplierType.Type)
                 .IsRequired()
                 .HasMaxLength(50);
-            builder.Property(supplierType => supplierType.CreateDate)
+            builder.Property(supplierType => supplierType.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(supplierType => supplierType.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(supplierType => supplierType.UpdateDate)
+            builder.Property(supplierType => supplierType.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(supplierType => supplierType.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasMany(supplierType => supplierType.Suppliers)
                 .WithOne(supplier => supplier.SupplierType)

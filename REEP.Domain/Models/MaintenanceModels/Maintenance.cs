@@ -1,10 +1,9 @@
-﻿using REEP.Domain.Models.MaintenanceModels.MaintenanceHistoryModels;
-using REEP.Domain.Models.MaintenanceModels.MaintenanceTypeModels;
+﻿using REEP.Domain.Models.MaintenanceModels.MaintenanceTypeModels;
 using REEP.Domain.InterfaceModels;
 
 namespace REEP.Domain.Models.MaintenanceModels
 {
-    public class Maintenance : IAuditable
+    public class Maintenance : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public bool IsActive { get; set; } = false;
@@ -14,10 +13,11 @@ namespace REEP.Domain.Models.MaintenanceModels
         public DateTime? DateOfEnd { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Guid MaintenanceTypeId { get; set; }
         public MaintenanceType MaintenanceType { get; set; } = null!;
-        public ICollection<MaintenаnceParametersHistory> HistoryRecords { get; set; } = [];
         public ICollection<MaintenanceRequest> MaintenanceRequests { get; set; } = [];
     }
 }
