@@ -10,8 +10,8 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations.
         {
             builder.HasKey(contractAndSupplier => new
             {
-                contractAndSupplier.Contract,
-                contractAndSupplier.Supplier
+                contractAndSupplier.ContractId,
+                contractAndSupplier.SupplierId
             });
 
             builder.HasIndex(contractAndSupplier => contractAndSupplier.IsActive);

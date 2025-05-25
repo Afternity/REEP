@@ -13,7 +13,7 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations.
             builder.HasIndex(paymentType => paymentType.Type)
                 .IsUnique();
             builder.HasIndex(paymentType => paymentType.CreatedAt);
-            builder.HasIndex(paymentType => paymentType.CreatedAt);
+            builder.HasIndex(paymentType => paymentType.UpdatedAt);
             builder.HasIndex(paymentType => paymentType.DeletedAt);
             builder.HasIndex(paymentType => paymentType.IsDeleted);
 

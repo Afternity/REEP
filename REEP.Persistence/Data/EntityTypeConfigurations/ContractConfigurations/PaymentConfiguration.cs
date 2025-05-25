@@ -20,7 +20,7 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations
             builder.Property(payment => payment.Price)
                 .IsRequired()
                 .HasColumnType("numeric(18, 2)")
-                .HasDefaultValue(0);
+                .HasDefaultValue(decimal.Zero);
             builder.Property(payment => payment.FirstPay)
                 .IsRequired()
                 .HasColumnType("date");
@@ -34,7 +34,7 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations
                 .IsRequired()
                 .HasColumnType("timestamp with time zone")
                 .HasDefaultValueSql("NOW()");
-            builder.Property(payment => payment.CreatedAt)
+            builder.Property(payment => payment.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
             builder.Property(payment => payment.DeletedAt)
                 .HasColumnType("timestamp with time zone");
