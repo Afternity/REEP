@@ -8,9 +8,9 @@ namespace REEP.Domain.Models.MaintenanceModels
         public Guid Id { get; set; }
         public bool IsActive { get; set; } = false;
         public string TotalDescription { get; set; } = string.Empty;
-        public DateTime? DateOfStart { get; set; }
-        public TimeSpan? PossibleRepairTime { get; set; }
-        public DateTime? DateOfEnd { get; set; }
+        public DateTime StartedAt { get; set; }
+        public TimeSpan PossibleRepairTime { get; set; }
+        public DateTime EndedAt { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

@@ -12,17 +12,26 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.MaintenanceConfiguratio
 
             builder.HasIndex(maintenanceType => maintenanceType.Type)
                 .IsUnique();
-            builder.HasIndex(maintenanceType => maintenanceType.CreateDate);
-            builder.HasIndex(maintenanceType => maintenanceType.UpdateDate);
+            builder.HasIndex(maintenanceType => maintenanceType.CreatedAt);
+            builder.HasIndex(maintenanceType => maintenanceType.UpdatedAt);
+            builder.HasIndex(maintenanceType => maintenanceType.DeletedAt);
+            builder.HasIndex(maintenanceType => maintenanceType.IsDeleted);
 
             builder.Property(maintenanceType => maintenanceType.Type)
                 .IsRequired()
                 .HasMaxLength(50);
-            builder.Property(maintenanceType => maintenanceType.CreateDate)
+            builder.Property(maintenanceType => maintenanceType.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(maintenanceType => maintenanceType.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(maintenanceType => maintenanceType.UpdateDate)
+            builder.Property(maintenanceType => maintenanceType.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(maintenanceType => maintenanceType.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasMany(maintenanceType => maintenanceType.Maintenances)
                 .WithOne(maintenance => maintenance.MaintenanceType)
