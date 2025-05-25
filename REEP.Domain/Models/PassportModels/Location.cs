@@ -8,8 +8,8 @@ namespace REEP.Domain.Models.PassportModels
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; } = string.Empty;
         public string? Address { get; set; } = string.Empty;
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt{ get; set; }
 
         public ICollection<EquipmentPassport> EquipmentPassports { get; set; } = [];
     }

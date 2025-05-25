@@ -12,7 +12,7 @@ namespace REEP.Domain.Models.ContractModels
         public string Description { get; set; } = string.Empty;
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
         public Guid ContractTypeId { get; set; }

@@ -6,8 +6,8 @@ namespace REEP.Domain.Models.WarrantyModels.WarrantyTypeModels
     {
         public Guid Id { get; set; }
         public string Type { get; set; } = string.Empty;
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
         public ICollection<Warranty> Warranties { get; set; } = [];
     }

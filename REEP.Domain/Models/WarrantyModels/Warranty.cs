@@ -12,8 +12,8 @@ namespace REEP.Domain.Models.WarrantyModels
         public string Description {get; set; } = string.Empty;
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
         public Guid ContractId { get; set; }
         public Contract Contract { get; set; } = null!;

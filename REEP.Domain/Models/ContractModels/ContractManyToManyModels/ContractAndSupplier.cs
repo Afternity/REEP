@@ -14,7 +14,7 @@ namespace REEP.Domain.Models.ContractModels.ContractManyToManyModels
         public Supplier Supplier { get; set; } = null!;
 
         public bool IsActive { get; set; } = true;
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; } 
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; } 
     }
 }

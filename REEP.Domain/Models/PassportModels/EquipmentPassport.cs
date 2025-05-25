@@ -9,8 +9,8 @@ namespace REEP.Domain.Models.PassportModels
     {
         public Guid Id { get; set; }
         public string Number { get; set; } = string.Empty;
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
         public Guid? UserUsedId { get; set; }
         public User? UserUsed { get; set; } 

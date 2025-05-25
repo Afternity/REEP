@@ -10,8 +10,8 @@ namespace REEP.Domain.Models.MaintenanceModels
         public string Description { get; set; } = string.Empty;
         public DateTime DateOfReceipt { get; set; } = DateTime.UtcNow;
         public DateTime DateOfRegistration {  get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
         public Guid MaintenanceId { get; set; }
         public Maintenance? Maintenance { get; set; } 

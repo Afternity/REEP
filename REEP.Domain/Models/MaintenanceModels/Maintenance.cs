@@ -12,8 +12,8 @@ namespace REEP.Domain.Models.MaintenanceModels
         public DateTime? DateOfStart { get; set; }
         public TimeSpan? PossibleRepairTime { get; set; }
         public DateTime? DateOfEnd { get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
         public Guid MaintenanceTypeId { get; set; }
         public MaintenanceType MaintenanceType { get; set; } = null!;

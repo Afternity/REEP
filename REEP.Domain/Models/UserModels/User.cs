@@ -15,8 +15,8 @@ namespace REEP.Domain.Models.UserModels
         public string? OtherContacts {  get; set; }
         public byte[] PasswordHash { get; set; } = new byte[32];
         public byte[] PasswordSalt { get; set; } = new byte[32];
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
         public Guid UserTypeId { get; set; }
         public UserType UserType { get; set; } = null!;

@@ -14,8 +14,8 @@ namespace REEP.Domain.Models.ContractModels
         public string? Number {  get; set; } 
         public string? Email { get; set; } 
         public string? OtherContacts { get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
         public Guid SupplierTypeId { get; set; }
         public SupplierType SupplierType { get; set; } = null!;

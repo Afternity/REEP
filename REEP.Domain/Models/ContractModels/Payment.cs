@@ -11,8 +11,8 @@ namespace REEP.Domain.Models.ContractModels
         public DateTime FirstPay { get; set; }
         public TimeSpan PeriodPay { get; set; }
         public DateTime LastPay { get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
         public Guid PaymentTypeId { get; set; }
         public PaymentType PaymentType { get; set; } = null!;

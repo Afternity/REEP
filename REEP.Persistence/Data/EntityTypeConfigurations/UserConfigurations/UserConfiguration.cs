@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using REEP.Domain.Models.PassportModels;
 using REEP.Domain.Models.UserModels;
 
 namespace REEP.Persistence.Data.EntityTypeConfigurations.UserConfigurations
