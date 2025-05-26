@@ -12,8 +12,10 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
 
             builder.HasIndex(location => location.Name);
             builder.HasIndex(location => location.Address);
-            builder.HasIndex(location => location.CreateDate);
-            builder.HasIndex(location => location.UpdateDate);
+            builder.HasIndex(location => location.CreatedAt);
+            builder.HasIndex(location => location.UpdatedAt);
+            builder.HasIndex(location => location.DeletedAt);
+            builder.HasIndex(location => location.IsDeleted);
 
             builder.Property(location => location.Name)
                 .IsRequired()
@@ -22,11 +24,18 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
                 .HasMaxLength(100);
             builder.Property(location => location.Address)
                 .HasMaxLength (100);
-            builder.Property(location => location.CreateDate)
+            builder.Property(location => location.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(location => location.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(location => location.UpdateDate)
+            builder.Property(location => location.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(location => location.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasMany(location => location.EquipmentPassports)
                 .WithOne(equipmentPassport => equipmentPassport.Location)

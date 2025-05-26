@@ -12,17 +12,26 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.UserConfigurations.User
 
             builder.HasIndex(userType => userType.Type)
                 .IsUnique();
-            builder.HasIndex(userType => userType.CreateDate);
-            builder.HasIndex(userType => userType.UpdateDate);
+            builder.HasIndex(userType => userType.CreatedAt);
+            builder.HasIndex(userType => userType.UpdatedAt);
+            builder.HasIndex(userType => userType.DeletedAt);
+            builder.HasIndex(userType => userType.IsDeleted);
 
             builder.Property(userType => userType.Type)
                 .IsRequired()
                 .HasMaxLength(50);
-            builder.Property(userType => userType.CreateDate)
+            builder.Property(userType => userType.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(userType => userType.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(userType => userType.UpdateDate)
+            builder.Property(userType => userType.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(userType => userType.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasMany(userType => userType.Users)
                 .WithOne(user => user.UserType)

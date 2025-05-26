@@ -12,17 +12,26 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations.
 
             builder.HasIndex(equipmentType => equipmentType.Type)
                 .IsUnique();
-            builder.HasIndex(equipmentType => equipmentType.CreateDate);
-            builder.HasIndex(equipmentType => equipmentType.UpdateDate);
+            builder.HasIndex(equipmentType => equipmentType.CreatedAt);
+            builder.HasIndex(equipmentType => equipmentType.UpdatedAt);
+            builder.HasIndex(equipmentType => equipmentType.DeletedAt);
+            builder.HasIndex(equipmentType => equipmentType.IsDeleted);
 
             builder.Property(equipmentType => equipmentType.Type)
                 .IsRequired()
                 .HasMaxLength(50);
-            builder.Property(equipmentType => equipmentType.CreateDate)
+            builder.Property(equipmentType => equipmentType.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(equipmentType => equipmentType.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(equipmentType => equipmentType.UpdateDate)
+            builder.Property(equipmentType => equipmentType.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(equipmentType => equipmentType.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasMany(equipmentType => equipmentType.Equipments)
                 .WithOne(equipment => equipment.EquipmentType)

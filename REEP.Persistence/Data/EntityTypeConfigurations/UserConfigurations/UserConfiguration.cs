@@ -12,6 +12,10 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.UserConfigurations
 
             builder.HasIndex(user => user.Email)
                 .IsUnique();
+            builder.HasIndex(user => user.CreatedAt);
+            builder.HasIndex(user => user.UpdatedAt);
+            builder.HasIndex(user => user.DeletedAt);
+            builder.HasIndex(user => user.IsDeleted);
 
             builder.Property(user => user.FirstName)
                 .IsRequired()
@@ -34,11 +38,18 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.UserConfigurations
             builder.Property(user => user.PasswordSalt)
                 .IsRequired()
                 .HasColumnType("bytea");
-            builder.Property(user => user.CreateDate)
+            builder.Property(user => user.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(user => user.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(user => user.UpdateDate)
+            builder.Property(user => user.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(user => user.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasOne(user => user.UserType)
                 .WithMany(userType => userType.Users)

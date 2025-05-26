@@ -12,17 +12,26 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations.
 
             builder.HasIndex(statusType => statusType.Type)
                 .IsUnique();
-            builder.HasIndex(statusType => statusType.CreateDate);
-            builder.HasIndex(statusType => statusType.UpdateDate);
+            builder.HasIndex(statusType => statusType.CreatedAt);
+            builder.HasIndex(statusType => statusType.UpdatedAt);
+            builder.HasIndex(statusType => statusType.DeletedAt);
+            builder.HasIndex(statusType => statusType.IsDeleted);
 
             builder.Property(statusType => statusType.Type)
                 .IsRequired()
                 .HasMaxLength(50);
-            builder.Property(statusType => statusType.CreateDate)
+            builder.Property(statusType => statusType.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(statusType => statusType.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(statusType => statusType.UpdateDate)
+            builder.Property(statusType => statusType.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(statusType => statusType.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasMany(statusType => statusType.Statuses)
                 .WithOne(status => status.StatusType)

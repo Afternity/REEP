@@ -7,8 +7,8 @@ namespace REEP.Domain.Models.PassportModels
     {
         public Guid Id { get; set; }
         public bool IsActive { get; set; } = false;
-        public DateTime? StartActive { get; set; }
-        public DateTime? EndActive { get; set; }
+        public DateTime? StartedAt { get; set; }
+        public DateTime? EndedAt { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

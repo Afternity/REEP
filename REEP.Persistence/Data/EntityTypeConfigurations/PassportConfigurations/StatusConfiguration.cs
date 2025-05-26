@@ -10,23 +10,34 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
         {
             builder.HasKey(status => status.Id);
 
-            builder.HasIndex(status => status.CreateDate);
-            builder.HasIndex(status => status.UpdateDate);
-            builder.HasIndex(status => status.StatusTypeId);
+            builder.HasIndex(status => status.IsActive);
+            builder.HasIndex(status => status.StartedAt);
+            builder.HasIndex(status => status.EndedAt);
+            builder.HasIndex(status => status.CreatedAt);
+            builder.HasIndex(status => status.UpdatedAt);
+            builder.HasIndex(status => status.DeletedAt);
+            builder.HasIndex(status => status.IsDeleted);
 
             builder.Property(status => status.IsActive)
                 .IsRequired()
-                .HasDefaultValue(false)
-                .HasColumnType("boolean");
-            builder.Property(status => status.StartActive)
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
+            builder.Property(status => status.StartedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(status => status.EndActive)
+            builder.Property(status => status.EndedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(status => status.CreateDate)
+            builder.Property(status => status.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(status => status.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(status => status.UpdateDate)
+            builder.Property(status => status.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(status => status.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasOne(status => status.StatusType)
                 .WithMany(statusType => statusType.Statuses)
@@ -37,7 +48,7 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
                 .WithOne(equipmentPassport => equipmentPassport.Status)
                 .HasForeignKey(equipmentPassport => equipmentPassport.StatusId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

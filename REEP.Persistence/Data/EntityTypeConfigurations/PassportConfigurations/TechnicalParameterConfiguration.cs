@@ -12,8 +12,10 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
 
             builder.HasIndex(t => t.Parameters)
                 .HasMethod("GIN");
-            builder.HasIndex(technicalParameter => technicalParameter.CreateDate);
-            builder.HasIndex(technicalParameter => technicalParameter.UpdateDate);
+            builder.HasIndex(technicalParameter => technicalParameter.CreatedAt);
+            builder.HasIndex(technicalParameter => technicalParameter.UpdatedAt);
+            builder.HasIndex(technicalParameter => technicalParameter.DeletedAt);
+            builder.HasIndex(technicalParameter => technicalParameter.IsDeleted);
 
             builder.Property(technicalParameter => technicalParameter.Parameters)
                 .IsRequired()
@@ -22,11 +24,18 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
                     v => v ?? "{}",
                     v => v
                     );
-            builder.Property(technicalParameter => technicalParameter.CreateDate)
+            builder.Property(technicalParameter => technicalParameter.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(technicalParameter => technicalParameter.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(technicalParameter => technicalParameter.UpdateDate)
+            builder.Property(technicalParameter => technicalParameter.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(technicalParameter => technicalParameter.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasMany(technicalParameter => technicalParameter.Equipments)
                 .WithOne(equipment => equipment.TechnicalParameter)

@@ -1,7 +1,7 @@
 ﻿using REEP.Domain.Models.PassportModels;
-using REEP.Domain.Models.UserModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using REEP.Domain.Models.WarrantyModels;
 
 namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
 {
@@ -13,20 +13,30 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
 
             builder.HasIndex(equipmentPassport => equipmentPassport.Number)
                 .IsUnique();
-            builder.HasIndex(equipmentPassport => equipmentPassport.CreateDate);
-            builder.HasIndex(equipmentPassport => equipmentPassport.UpdateDate);
+            builder.HasIndex(equipmentPassport => equipmentPassport.CreatedAt);
+            builder.HasIndex(equipmentPassport => equipmentPassport.UpdatedAt);
+            builder.HasIndex(equipmentPassport => equipmentPassport.DeletedAt);
+            builder.HasIndex(equipmentPassport => equipmentPassport.IsDeleted);
             builder.HasIndex(equipmentPassport => equipmentPassport.UserUsedId);
             builder.HasIndex(equipmentPassport => equipmentPassport.EquipmentId);
+            builder.HasIndex(equipmentPassport => equipmentPassport.WarrantyId);
             builder.HasIndex(equipmentPassport => equipmentPassport.StatusId);
 
             builder.Property(equipmentPassport => equipmentPassport.Number)
                 .IsRequired()
                 .HasMaxLength(200);
-            builder.Property(equipmentPassport => equipmentPassport.CreateDate)
+            builder.Property(equipmentPassport => equipmentPassport.CreatedAt)
                 .IsRequired()
+                .HasColumnType("timestamp with time zone")
+                .HasDefaultValueSql("NOW()");
+            builder.Property(equipmentPassport => equipmentPassport.UpdatedAt)
                 .HasColumnType("timestamp with time zone");
-            builder.Property(equipmentPassport => equipmentPassport.UpdateDate)
+            builder.Property(equipmentPassport => equipmentPassport.DeletedAt)
                 .HasColumnType("timestamp with time zone");
+            builder.Property(equipmentPassport => equipmentPassport.IsDeleted)
+                .IsRequired()
+                .HasColumnType("boolean")
+                .HasDefaultValue(false);
 
             builder.HasOne(equipmentPassport => equipmentPassport.UserUsed)
                 .WithMany(user => user.UserUsedEquipmentPassports)
@@ -37,7 +47,26 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
                 .WithMany(user => user.UserGrantAccessEquipmentPassports)
                 .HasForeignKey(equipmentPassport => equipmentPassport.UserGrantAccessId)
                 .OnDelete(DeleteBehavior.Restrict);
-            // надо доделать, я побежал делать TypeConfigurations
+            builder.HasOne(equipmentPassport => equipmentPassport.Equipment)
+                .WithMany(equipment => equipment.EquipmentPassports)
+                .HasForeignKey(equipmentPassport => equipmentPassport.EquipmentId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(equipmentPassport => equipmentPassport.Status)
+                .WithMany(status => status.EquipmentPassports)
+                .HasForeignKey(equipmentPassport => equipmentPassport.StatusId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(equipmentPassport => equipmentPassport.Warranty)
+                .WithMany(warranty => warranty.EquipmentPassports)
+                .HasForeignKey(equipmentPassport => equipmentPassport.WarrantyId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(equipmentPassport => equipmentPassport.Location)
+                .WithMany(location => location.EquipmentPassports)
+                .HasForeignKey(equipmentPassport => equipmentPassport.LocationId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

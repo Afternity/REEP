@@ -10,8 +10,8 @@ namespace REEP.Domain.Models.WarrantyModels
         public Guid Id { get; set; }
         public string Name {get; set; } = string.Empty;
         public string Description {get; set; } = string.Empty;
-        public DateTime DateStart { get; set; }
-        public DateTime DateEnd { get; set; }
+        public DateTime StartedAt { get; set; }
+        public DateTime EndedAt { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
