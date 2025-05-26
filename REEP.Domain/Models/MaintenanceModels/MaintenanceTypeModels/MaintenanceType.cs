@@ -2,14 +2,16 @@
 
 namespace REEP.Domain.Models.MaintenanceModels.MaintenanceTypeModels
 {
-    public class MaintenanceType : IAuditable
+    public class MaintenanceType : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public string Type { get; set; } = string.Empty;
         public string Description {  get; set; } = string.Empty;
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
-        public IList<Maintenance> Maintenances { get; set; } = [];
+        public ICollection<Maintenance> Maintenances { get; set; } = [];
     }
 }

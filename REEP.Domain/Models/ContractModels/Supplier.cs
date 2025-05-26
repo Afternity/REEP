@@ -4,7 +4,7 @@ using REEP.Domain.InterfaceModels;
 
 namespace REEP.Domain.Models.ContractModels
 {
-    public class Supplier : IAuditable
+    public class Supplier : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public string? FirstName { get; set; } 
@@ -14,11 +14,13 @@ namespace REEP.Domain.Models.ContractModels
         public string? Number {  get; set; } 
         public string? Email { get; set; } 
         public string? OtherContacts { get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Guid SupplierTypeId { get; set; }
         public SupplierType SupplierType { get; set; } = null!;
-        public IList<ContractAndSupplier> ContractsAndSuppliers { get; set; } = [];
+        public ICollection<ContractAndSupplier> ContractsAndSuppliers { get; set; } = [];
     }
 }

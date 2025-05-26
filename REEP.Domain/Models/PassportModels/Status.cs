@@ -3,17 +3,19 @@ using REEP.Domain.InterfaceModels;
 
 namespace REEP.Domain.Models.PassportModels
 {
-    public class Status : IAuditable
+    public class Status : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public bool IsActive { get; set; } = false;
-        public DateTime? StartActive { get; set; }
-        public DateTime? EndActive { get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime? StartedAt { get; set; }
+        public DateTime? EndedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Guid StatusTypeId { get; set; }
         public StatusType StatusType { get; set; } = null!;
-        public IList<EquipmentPassport> EquipmentPassports { get; set; } = [];
+        public ICollection<EquipmentPassport> EquipmentPassports { get; set; } = [];
     }
 }

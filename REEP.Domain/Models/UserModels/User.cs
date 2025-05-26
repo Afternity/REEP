@@ -1,10 +1,11 @@
 ﻿using REEP.Domain.Models.PassportModels;
 using REEP.Domain.Models.UserModels.UserTypeModels;
 using REEP.Domain.InterfaceModels;
+using REEP.Domain.Models.MaintenanceModels;
 
 namespace REEP.Domain.Models.UserModels
 {
-    public class User : IAuditable
+    public class User : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
@@ -14,11 +15,16 @@ namespace REEP.Domain.Models.UserModels
         public string? OtherContacts {  get; set; }
         public byte[] PasswordHash { get; set; } = new byte[32];
         public byte[] PasswordSalt { get; set; } = new byte[32];
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Guid UserTypeId { get; set; }
         public UserType UserType { get; set; } = null!;
-        public IList<EquipmentPassport> EquipmentPassports { get; set; } = [];
+        public ICollection<EquipmentPassport> UserUsedEquipmentPassports { get; set; } = [];
+        public ICollection<EquipmentPassport> UserGrantAccessEquipmentPassports { get; set; } = [];
+        public ICollection<MaintenanceRequest> CreatedRequests { get; set; } = [];
+        public ICollection<MaintenanceRequest> ApprovedRequests { get; set; } = [];
     }
 }

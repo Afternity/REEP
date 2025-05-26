@@ -4,18 +4,20 @@ using REEP.Domain.InterfaceModels;
 
 namespace REEP.Domain.Models.ContractModels
 {
-    public class Payment : IAuditable
+    public class Payment : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public decimal Price { get; set; } = decimal.Zero;
         public DateTime FirstPay { get; set; }
-        public DateTime PeriodPay { get; set; }
+        public TimeSpan PeriodPay { get; set; }
         public DateTime LastPay { get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Guid PaymentTypeId { get; set; }
         public PaymentType PaymentType { get; set; } = null!;
-        public IList<ContractAndPayment> ContractsAndPayments { get; set; } = [];
+        public ICollection<ContractAndPayment> ContractsAndPayments { get; set; } = [];
     }
 }

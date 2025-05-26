@@ -2,13 +2,15 @@
 
 namespace REEP.Domain.Models.ContractModels.ContractTypeModels
 {
-    public class ContractType : IAuditable
+    public class ContractType : IAuditable, ISoftDeletable
     {
         public Guid Id { get; set; }
         public string Type { get; set; } = string.Empty;
-        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
-        public IList<Contract> Contracts { get; set; } = [];
+        public ICollection<Contract> Contracts { get; set; } = [];
     }
 }
