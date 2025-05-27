@@ -20,10 +20,20 @@ namespace REEP.Persistence.DependencyInjections
             {
                 options.UseNpgsql(connetcionString, npgsqlOptions =>
                 {
-                    npgsqlOptions.EnableRetryOnFailure(3);
+                    npgsqlOptions.MigrationsAssembly("REEP.Persistence");
+
+                    npgsqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 5,
+                        maxRetryDelay: TimeSpan.FromSeconds(30),
+                        errorCodesToAdd: null);
+
+                    npgsqlOptions.CommandTimeout(30);
                 });
 
-                options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
+                options.EnableDetailedErrors();
+                options.EnableSensitiveDataLogging();
+
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
             return services;
