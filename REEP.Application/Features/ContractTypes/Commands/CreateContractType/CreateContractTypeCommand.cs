@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
-namespace REEP.Application.Features.ContractTypes.CreateContractType
+namespace REEP.Application.Features.ContractTypes.Commands.CreateContractType
 {
-    internal class CreateContractTypeCommand
+    public class CreateContractTypeCommand : IRequest<Guid>
     {
+        public string Type { get; set; } = string.Empty;
+        public bool IsDeleted { get; set; } = false;
     }
 }

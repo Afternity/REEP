@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails;
 
 namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypesList
 {
-    internal class GetContractTypeListQuary
+    public class GetContractTypesListQuery : IRequest<ContractTypeDetailsVm>
     {
+        public bool IsDeleted { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using REEP.Domain.Models.ContractModels.ContractManyToManyModels;
+﻿using REEP.Application.Interfaces.InterfaceDbContexts;
+using REEP.Domain.Models.ContractModels.ContractManyToManyModels;
 using REEP.Domain.Models.ContractModels.ContractTypeModels;
 using REEP.Domain.Models.ContractModels;
 using REEP.Domain.Models.MaintenanceModels.MaintenanceTypeModels;
@@ -25,7 +26,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace REEP.Persistence.Data.DbContexts
 {
-    public class ReepDbContext : DbContext
+    public class ReepDbContext : DbContext, IReepDbContext
     {
         private readonly DbContextOptions<ReepDbContext> _options;
 

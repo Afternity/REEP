@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails
 {
-    internal class GetContractTypeDetailsQuary
+    public class GetContractTypeDetailsQuery : IRequest<ContractTypeDetailsVm>
     {
+        public Guid Id { get; set; }
     }
 }

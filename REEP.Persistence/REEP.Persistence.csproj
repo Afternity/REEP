@@ -16,10 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\REEP.Application\REEP.Application.csproj" />
     <ProjectReference Include="..\REEP.Domain\REEP.Domain.csproj" />
   </ItemGroup>
 

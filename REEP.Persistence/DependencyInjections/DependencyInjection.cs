@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using REEP.Application.Interfaces.InterfaceRepositories;
 using REEP.Persistence.Data.DbContexts;
+using REEP.Persistence.Data.Repositories;
 
 namespace REEP.Persistence.DependencyInjections
 {
@@ -33,8 +35,10 @@ namespace REEP.Persistence.DependencyInjections
                 options.EnableDetailedErrors();
                 options.EnableSensitiveDataLogging();
 
-                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
             });
+
+            services.AddScoped<IContractTypeRepository, ContractTypeRepository>();
 
             return services;
         }
