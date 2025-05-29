@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using REEP.Application.Interfaces.InterfaceDbContexts;
 using REEP.Application.Interfaces.InterfaceRepositories;
 using REEP.Persistence.Data.DbContexts;
 using REEP.Persistence.Data.Repositories;
@@ -18,7 +19,7 @@ namespace REEP.Persistence.DependencyInjections
             if (string.IsNullOrEmpty(connetcionString))
                 throw new InvalidOperationException("Connection string 'DefaultConnection' not found");
 
-            services.AddDbContext<ReepDbContext>(options =>
+            services.AddDbContext<IReepDbContext, ReepDbContext>(options =>
             {
                 options.UseNpgsql(connetcionString, npgsqlOptions =>
                 {

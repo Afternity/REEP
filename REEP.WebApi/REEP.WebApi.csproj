@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\REEP.Application\REEP.Application.csproj" />
     <ProjectReference Include="..\REEP.Persistence\REEP.Persistence.csproj" />
   </ItemGroup>
 
