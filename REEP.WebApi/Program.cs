@@ -2,6 +2,7 @@ using REEP.Application;
 using REEP.Application.Common.Mappings;
 using REEP.Application.Interfaces.InterfaceDbContexts;
 using REEP.Persistence.DependencyInjections;
+using REEP.WebApi.Middleware;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +27,7 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+app.UseCustomExceptionHandler();
 app.UseRouting();
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
