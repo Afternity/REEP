@@ -1,11 +1,13 @@
-﻿using REEP.Application.Features.ContractTypes.Queries.GetContractTypesList;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails;
-using AutoMapper;
 using REEP.Application.Features.ContractTypes.Commands.CreateContractType;
-using REEP.WebApi.Models;
-using REEP.Application.Features.ContractTypes.Commands.UpdateContractTypes;
-using REEP.Application.Features.ContractTypes.Commands.DeleteContractTypes;
+using REEP.Application.Features.ContractTypes.Commands.HardDeleteContractType;
+using REEP.Application.Features.ContractTypes.Commands.SoftDeleteContractType;
+using REEP.Application.Features.ContractTypes.Commands.UpdateContractType;
+using REEP.Application.Features.ContractTypes.Dto;
+using REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails;
+using REEP.Application.Features.ContractTypes.Queries.GetContractTypesList;
+using REEP.Application.Interfaces.InterfaceDbContexts;
 
 namespace REEP.WebApi.Controllers
 {
@@ -13,11 +15,12 @@ namespace REEP.WebApi.Controllers
     public class ContractTypeController : BaseContraller
     {
         private readonly IMapper _mapper;
+        private readonly ILogger<ContractTypeController> _logger;
 
-        public ContractTypeController(IMapper mapper) =>
-            _mapper = mapper;
+        public ContractTypeController(IMapper mapper, ILogger<ContractTypeController> logger) =>
+           (_mapper, _logger) = (mapper, logger);
 
-        [HttpGet]
+        [HttpGet("get-all/{bool}")]
         public async Task<ActionResult<ContractTypeListVm>> GetAll(bool isDeleted)
         {
             var query = new GetContractTypesListQuery()
@@ -29,15 +32,22 @@ namespace REEP.WebApi.Controllers
             return Ok(vm);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ContractTypeListVm>> Get(Guid id)
+        [HttpGet("get/{id}")]
+        public async Task<ActionResult<ContractTypeDetailsVm>> Get(Guid id)
         {
-            var query = new GetContractTypeDetailsQuery
+            _logger.LogInformation($"guid = {id}");
+
+            var query = new GetContractTypeDetailsQuery 
             {
-                Id = id
+                Id = id 
             };
 
+            _logger.LogInformation($"query.Id == {query.Id}");
+
             var vm = await Mediator.Send(query);
+
+            _logger.LogInformation($"vm == {vm.Type}");
+
             return Ok(vm);
         }
 
@@ -49,7 +59,7 @@ namespace REEP.WebApi.Controllers
             return Ok(noteId);
         }
 
-        [HttpPut]
+        [HttpPut("update")]
         public async Task<IActionResult> Update([FromBody] UpdateContractTypeDto updateContractTypeDto)
         {
             var command = _mapper.Map<UpdateContractTypeCommand>(updateContractTypeDto);
@@ -57,10 +67,18 @@ namespace REEP.WebApi.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpPut("soft-delete")]
+        public async Task<IActionResult> SoftDelete([FromBody] SoftDeleteContractTypeDto softDeleteContractTypeDto)
         {
-            var command = new DeleteContractTypeCommand
+            var command = _mapper.Map<SoftDeleteContractTypeCommand>(softDeleteContractTypeDto);
+            await Mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("hard-delete/{id}")]
+        public async Task<IActionResult> HardDelete(Guid id)
+        {
+            var command = new HardDeleteContractTypeCommand
             {
                 Id = id
             };

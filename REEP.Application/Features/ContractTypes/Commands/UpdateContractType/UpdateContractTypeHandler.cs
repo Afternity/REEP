@@ -3,7 +3,7 @@ using REEP.Domain.Models.ContractModels.ContractTypeModels;
 using MediatR;
 using REEP.Application.Interfaces.InterfaceRepositories;
 
-namespace REEP.Application.Features.ContractTypes.Commands.UpdateContractTypes
+namespace REEP.Application.Features.ContractTypes.Commands.UpdateContractType
 {
     public class UpdateContractTypeHandler : IRequestHandler<UpdateContractTypeCommand, Unit>
     {
@@ -24,8 +24,6 @@ namespace REEP.Application.Features.ContractTypes.Commands.UpdateContractTypes
 
             contractType.Type = request.Type;
             contractType.UpdatedAt = DateTime.UtcNow;
-            contractType.DeletedAt = request.DeletedAt;
-            contractType.IsDeleted = request.IsDeleted;
 
             await _repository.UpdateAsync(contractType);  
             

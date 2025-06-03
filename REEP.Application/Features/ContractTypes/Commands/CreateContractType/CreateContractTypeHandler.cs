@@ -6,13 +6,12 @@ namespace REEP.Application.Features.ContractTypes.Commands.CreateContractType
 {
     public class CreateContractTypeHandler : IRequestHandler<CreateContractTypeCommand, Guid>
     {
-        private readonly IContractTypeRepository _contractTypeRepository;
+        private readonly IContractTypeRepository _repository;
 
-        public CreateContractTypeHandler(IContractTypeRepository contractTypeRepository) =>
-            _contractTypeRepository = contractTypeRepository;
+        public CreateContractTypeHandler(IContractTypeRepository repository) =>
+            _repository = repository;
 
-        public async Task<Guid> Handle(
-            CreateContractTypeCommand request,
+        public async Task<Guid> Handle(CreateContractTypeCommand request,
             CancellationToken cancellationToken)
         {
             var contractType = new ContractType
@@ -22,7 +21,7 @@ namespace REEP.Application.Features.ContractTypes.Commands.CreateContractType
                 IsDeleted = request.IsDeleted,
             };
 
-            await _contractTypeRepository.CreateAsync(contractType, cancellationToken);
+            await _repository.CreateAsync(contractType, cancellationToken);
 
             return contractType.Id;
         }

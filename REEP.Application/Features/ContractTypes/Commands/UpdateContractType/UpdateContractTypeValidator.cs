@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace REEP.Application.Features.ContractTypes.Commands.UpdateContractTypes
+namespace REEP.Application.Features.ContractTypes.Commands.UpdateContractType
 {
     public class UpdateContractTypeValidator 
         : AbstractValidator<UpdateContractTypeCommand>
@@ -9,8 +9,6 @@ namespace REEP.Application.Features.ContractTypes.Commands.UpdateContractTypes
         {
             RuleFor(updateContractTypeCommand => updateContractTypeCommand.Id).NotEqual(Guid.Empty);
             RuleFor(updateContractTypeCommand => updateContractTypeCommand.Type).NotEmpty().MaximumLength(50);
-            RuleFor(updateContractTypeCommand => updateContractTypeCommand.CreatedAt).NotEmpty();
-            RuleFor(updateContractTypeCommand => updateContractTypeCommand.UpdatedAt).NotEmpty();
         }
     }
 }

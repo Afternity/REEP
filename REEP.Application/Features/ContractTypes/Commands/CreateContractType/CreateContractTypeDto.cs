@@ -1,12 +1,9 @@
-﻿using AutoMapper;
-using MediatR;
-using REEP.Application.Features.ContractTypes.Commands.CreateContractType;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails;
-using REEP.Domain.Models.ContractModels.ContractTypeModels;
+﻿using REEP.Application.Common.Mappings;
+using AutoMapper;
 
-namespace REEP.WebApi.Models
+namespace REEP.Application.Features.ContractTypes.Commands.CreateContractType
 {
-    public class CreateContractTypeDto : IRequest<CreateContractTypeCommand>
+    public class CreateContractTypeDto : IMapWith<CreateContractTypeCommand>
     {
         public string Type { get; set; } = string.Empty;
         public bool IsDeleted { get; set; } = false;

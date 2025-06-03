@@ -27,8 +27,7 @@ namespace REEP.Persistence.Data.Repositories
 
         public async Task<ContractType> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            return await _context.ContractTypes.FirstOrDefaultAsync(contractType =>
-                         contractType.Id == id, cancellationToken);
+            return await _context.ContractTypes.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
         public async Task UpdateAsync(ContractType contractType)
