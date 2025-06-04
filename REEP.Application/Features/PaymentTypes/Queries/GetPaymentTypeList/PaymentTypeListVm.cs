@@ -1,7 +1,0 @@
-﻿namespace REEP.Application.Features.PaymentTypes.Queries.GetPaymentTypeList
-{
-    public class PaymentTypeListVm
-    {
-        public ICollection<PaymentTypeLookupDto> PaymentTypes { get; set; } = [];
-    }
-}
