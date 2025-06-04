@@ -3,8 +3,6 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypesList;
 using REEP.Application.Interfaces.InterfaceDbContexts;
 
 namespace REEP.Application.Features.PaymentTypes.Queries.GetPaymentTypeList

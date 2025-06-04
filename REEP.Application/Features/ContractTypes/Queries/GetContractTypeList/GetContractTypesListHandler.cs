@@ -4,7 +4,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypesList
+namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypeList
 {
     public class GetContractTypesListHandler
         : IRequestHandler<GetContractTypesListQuery, ContractTypeListVm>

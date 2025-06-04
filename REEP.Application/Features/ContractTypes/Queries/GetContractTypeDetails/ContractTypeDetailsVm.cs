@@ -2,11 +2,11 @@
 using REEP.Domain.Models.ContractModels.ContractTypeModels;
 using AutoMapper;
 
-namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails
+namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypeDetails
 {
     public class ContractTypeDetailsVm : IMapWith<ContractType>
     {
-        public string Type { get; set; } 
+        public string Type { get; set; } = null!;
         public DateTime CreatedAt { get; set; } 
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

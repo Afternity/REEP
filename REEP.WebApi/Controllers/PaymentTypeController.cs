@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using REEP.Application.Features.ContractTypes.Queries.GetContractTypeByTypeDetails;
 using REEP.Application.Features.PaymentTypes.Commands.CreatePaymentType;
 using REEP.Application.Features.PaymentTypes.Commands.HardDeletePaymentType;
 using REEP.Application.Features.PaymentTypes.Commands.SoftDeletePaymetType;
 using REEP.Application.Features.PaymentTypes.Commands.UpdatePaymentType;
+using REEP.Application.Features.PaymentTypes.Queries.GetPaymentTypeByTypeDetails;
 using REEP.Application.Features.PaymentTypes.Queries.GetPaymentTypeDetails;
 using REEP.Application.Features.PaymentTypes.Queries.GetPaymentTypeList;
 using REEP.Application.Interfaces.InterfaceDbContexts;
@@ -28,6 +30,19 @@ namespace REEP.WebApi.Controllers
             };
 
             var vm = await Mediator.Send(query);
+            return Ok(vm);
+        }
+
+        [HttpGet("{type}/by-type")]
+        public async Task<ActionResult<PaymentTypeByTypeDelailsVm>> GetByType(string type)
+        {
+            var query = new GetPaymentTypeByTypeDetailsQuery
+            {
+                Type = type
+            };
+
+            var vm = await Mediator.Send(query);
+
             return Ok(vm);
         }
 

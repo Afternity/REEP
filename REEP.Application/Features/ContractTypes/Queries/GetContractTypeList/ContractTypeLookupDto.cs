@@ -2,7 +2,7 @@
 using REEP.Domain.Models.ContractModels.ContractTypeModels;
 using AutoMapper;
 
-namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypesList
+namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypeList
 {
     public class ContractTypeLookupDto : IMapWith<ContractType>
     {

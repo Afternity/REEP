@@ -4,8 +4,9 @@ using REEP.Application.Features.ContractTypes.Commands.CreateContractType;
 using REEP.Application.Features.ContractTypes.Commands.HardDeleteContractType;
 using REEP.Application.Features.ContractTypes.Commands.SoftDeleteContractType;
 using REEP.Application.Features.ContractTypes.Commands.UpdateContractType;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypesList;
+using REEP.Application.Features.ContractTypes.Queries.GetContractTypeByTypeDetails;
+using REEP.Application.Features.ContractTypes.Queries.GetContractTypeDetails;
+using REEP.Application.Features.ContractTypes.Queries.GetContractTypeList;
 
 namespace REEP.WebApi.Controllers
 {
@@ -29,21 +30,28 @@ namespace REEP.WebApi.Controllers
             return Ok(vm);
         }
 
+        [HttpGet("{type}/by-type")]
+        public async Task<ActionResult<ContractTypeByTypeDetailsVm>> GetByType(string type)
+        {
+            var query = new GetContractTypeByTypeDetailsQuery
+            {
+                Type = type
+            };
+
+            var vm = await Mediator.Send(query);
+
+            return Ok(vm);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<ContractTypeDetailsVm>> Get(Guid id)
         {
-            _logger.LogInformation($"guid = {id}");
-
             var query = new GetContractTypeDetailsQuery 
             {
                 Id = id 
             };
 
-            _logger.LogInformation($"query.Id == {query.Id}");
-
             var vm = await Mediator.Send(query);
-
-            _logger.LogInformation($"vm == {vm.Type}");
 
             return Ok(vm);
         }

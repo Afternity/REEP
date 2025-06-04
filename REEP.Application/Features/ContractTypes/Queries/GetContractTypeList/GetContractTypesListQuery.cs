@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails;
+using REEP.Application.Features.ContractTypes.Queries.GetContractTypeDetails;
 
-namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypesList
+namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypeList
 {
     public class GetContractTypesListQuery : IRequest<ContractTypeListVm>
     {

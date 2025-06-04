@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using REEP.Application.Interfaces.InterfaceDbContexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails
+namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypeDetails
 {
     public class GetContractTypeDetailsQueryHandler
         : IRequestHandler<GetContractTypeDetailsQuery, ContractTypeDetailsVm>

@@ -1,4 +1,4 @@
-﻿namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypesList
+﻿namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypeList
 {
     public class ContractTypeListVm 
     {
