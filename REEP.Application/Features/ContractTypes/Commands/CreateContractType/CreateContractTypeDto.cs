@@ -5,7 +5,7 @@ namespace REEP.Application.Features.ContractTypes.Commands.CreateContractType
 {
     public class CreateContractTypeDto : IMapWith<CreateContractTypeCommand>
     {
-        public string Type { get; set; } = string.Empty;
+        public string Type { get; set; } = null!;
         public bool IsDeleted { get; set; } = false;
 
         public void Mapping(Profile profile)

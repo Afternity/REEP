@@ -4,14 +4,11 @@ using REEP.Application.Features.ContractTypes.Commands.CreateContractType;
 using REEP.Application.Features.ContractTypes.Commands.HardDeleteContractType;
 using REEP.Application.Features.ContractTypes.Commands.SoftDeleteContractType;
 using REEP.Application.Features.ContractTypes.Commands.UpdateContractType;
-using REEP.Application.Features.ContractTypes.Dto;
 using REEP.Application.Features.ContractTypes.Queries.GetContractTypesDetails;
 using REEP.Application.Features.ContractTypes.Queries.GetContractTypesList;
-using REEP.Application.Interfaces.InterfaceDbContexts;
 
 namespace REEP.WebApi.Controllers
 {
-    [Route("api/[controller]")]
     public class ContractTypeController : BaseContraller
     {
         private readonly IMapper _mapper;
@@ -20,7 +17,7 @@ namespace REEP.WebApi.Controllers
         public ContractTypeController(IMapper mapper, ILogger<ContractTypeController> logger) =>
            (_mapper, _logger) = (mapper, logger);
 
-        [HttpGet("get-all/{bool}")]
+        [HttpGet("{bool}/get-all")]
         public async Task<ActionResult<ContractTypeListVm>> GetAll(bool isDeleted)
         {
             var query = new GetContractTypesListQuery()
@@ -32,7 +29,7 @@ namespace REEP.WebApi.Controllers
             return Ok(vm);
         }
 
-        [HttpGet("get/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<ContractTypeDetailsVm>> Get(Guid id)
         {
             _logger.LogInformation($"guid = {id}");
@@ -59,7 +56,7 @@ namespace REEP.WebApi.Controllers
             return Ok(noteId);
         }
 
-        [HttpPut("update")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateContractTypeDto updateContractTypeDto)
         {
             var command = _mapper.Map<UpdateContractTypeCommand>(updateContractTypeDto);
@@ -75,7 +72,7 @@ namespace REEP.WebApi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("hard-delete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> HardDelete(Guid id)
         {
             var command = new HardDeleteContractTypeCommand

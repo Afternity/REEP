@@ -10,7 +10,7 @@ namespace REEP.Application.Features.ContractTypes.Commands.CreateContractType
             RuleFor(createContractTypeCommand =>
                 createContractTypeCommand.Type).NotEmpty().MaximumLength(50);
             RuleFor(createContractTypeCommand =>
-                createContractTypeCommand.IsDeleted).NotEmpty();
+                createContractTypeCommand.IsDeleted).NotNull();
         }
     }
 }

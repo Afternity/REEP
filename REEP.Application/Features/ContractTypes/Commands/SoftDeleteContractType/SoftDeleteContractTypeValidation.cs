@@ -8,6 +8,7 @@ namespace REEP.Application.Features.ContractTypes.Commands.SoftDeleteContractTyp
         public SoftDeleteContractTypeValidation()
         {
             RuleFor(softDeleteContractTypeCommand => softDeleteContractTypeCommand.Id).NotEqual(Guid.Empty);
+            RuleFor(softDeleteContractTypeCommand => softDeleteContractTypeCommand.IsDeleted).NotNull();
         }
     }
 }

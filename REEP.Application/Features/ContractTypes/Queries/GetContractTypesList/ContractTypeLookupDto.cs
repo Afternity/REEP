@@ -6,8 +6,8 @@ namespace REEP.Application.Features.ContractTypes.Queries.GetContractTypesList
 {
     public class ContractTypeLookupDto : IMapWith<ContractType>
     {
-        public string Type { get; set; } 
-        public bool IsDeleted { get; set; } 
+        public string Type { get; set; } = null!;
+        public bool IsDeleted { get; set; } = false;
 
         public void Mapping(Profile profile)
         {

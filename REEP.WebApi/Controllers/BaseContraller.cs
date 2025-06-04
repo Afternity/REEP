@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace REEP.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     public class BaseContraller : ControllerBase
     {
         private IMediator _mediator;
