@@ -1,16 +1,14 @@
 ﻿using AutoMapper;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Commands.CreateSupplierType;
+using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Commands.HardDeleteSupplierType;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Commands.SoftDeleteSupplierType;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Commands.UpdateSupplierType;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Queries.GetSupplierTypeByTypeDetails;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Queries.GetSupplierTypeDetails;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Queries.GetSupplierTypeList;
-using REEP.Application.Features.SupplierTypes.Commands.HardDeleteSupplierType;
 
-namespace REEP.WebApi.Controllers.ContractControllers
+namespace REEP.WebApi.Controllers.ContractControllers.ContractTypeControllers
 {
     public class SupplierTypeController : BaseContraller
     {
@@ -90,7 +88,5 @@ namespace REEP.WebApi.Controllers.ContractControllers
             var supplierTypeDetailsVm = await Mediator.Send(query);
             return Ok(supplierTypeDetailsVm);
         }
-
-
     }
 }

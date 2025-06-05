@@ -1,17 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.ContractTypes.Commands.CreateContractType;
+using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.ContractTypes.Commands.HardDeleteContractType;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.ContractTypes.Commands.SoftDeleteContractType;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.ContractTypes.Commands.UpdateContractType;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.ContractTypes.Queries.GetContractTypeByTypeDetails;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.ContractTypes.Queries.GetContractTypeDetails;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.ContractTypes.Queries.GetContractTypeList;
-using REEP.Application.Features.ContractTypes.Commands.HardDeleteContractType;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypeByTypeDetails;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypeDetails;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypeList;
 
-namespace REEP.WebApi.Controllers.ContractControllers
+namespace REEP.WebApi.Controllers.ContractControllers.ContractTypeControllers
 {
     public class ContractTypeController : BaseContraller
     {

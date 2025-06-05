@@ -2,6 +2,6 @@
 {
     public class ContractTypeListVm 
     {
-        public ICollection<ContractTypeLookupDto> ContractTypes { get; set; }
+        public ICollection<ContractTypeLookupDto> ContractTypes { get; set; } = [];
     }
 }

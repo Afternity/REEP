@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using REEP.Application.Common.Mappings;
-using REEP.Application.Features.ContractTypes.Commands.UpdateContractType;
 
 namespace REEP.Application.Features.ContractFeatures.ContractTypesFeatures.ContractTypes.Commands.SoftDeleteContractType
 {

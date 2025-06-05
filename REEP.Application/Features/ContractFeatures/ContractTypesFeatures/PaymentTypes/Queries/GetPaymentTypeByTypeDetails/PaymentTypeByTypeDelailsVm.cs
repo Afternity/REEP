@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using REEP.Application.Common.Mappings;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypeByTypeDetails;
 using REEP.Domain.Models.ContractModels.ContractTypeModels;
 
 namespace REEP.Application.Features.ContractFeatures.ContractTypesFeatures.PaymentTypes.Queries.GetPaymentTypeByTypeDetails

@@ -1,16 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.PaymentTypes.Commands.CreatePaymentType;
+using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.PaymentTypes.Commands.HardDeletePaymentType;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.PaymentTypes.Commands.SoftDeletePaymetType;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.PaymentTypes.Commands.UpdatePaymentType;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.PaymentTypes.Queries.GetPaymentTypeByTypeDetails;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.PaymentTypes.Queries.GetPaymentTypeDetails;
 using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.PaymentTypes.Queries.GetPaymentTypeList;
-using REEP.Application.Features.ContractTypes.Queries.GetContractTypeByTypeDetails;
-using REEP.Application.Features.PaymentTypes.Commands.HardDeletePaymentType;
-using REEP.Application.Interfaces.InterfaceDbContexts;
 
-namespace REEP.WebApi.Controllers.ContractControllers
+namespace REEP.WebApi.Controllers.ContractControllers.ContractTypeControllers
 {
     public class PaymentTypeController : BaseContraller
     {
