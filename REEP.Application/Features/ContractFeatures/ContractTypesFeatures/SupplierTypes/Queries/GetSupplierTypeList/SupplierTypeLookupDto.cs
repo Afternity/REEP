@@ -6,8 +6,8 @@ namespace REEP.Application.Features.ContractFeatures.ContractTypesFeatures.Suppl
 {
     public class SupplierTypeLookupDto : IMapWith<SupplierType>
     {
+        public Guid Id { get; set; }
         public string Type { get; set; } = null!;
-        public bool IsDeleted  { get; set; } = false;
 
         public void Mapping(Profile profile)
         {

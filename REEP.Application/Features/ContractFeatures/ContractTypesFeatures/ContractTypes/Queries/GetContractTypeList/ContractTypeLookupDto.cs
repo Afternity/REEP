@@ -6,16 +6,14 @@ namespace REEP.Application.Features.ContractFeatures.ContractTypesFeatures.Contr
 {
     public class ContractTypeLookupDto : IMapWith<ContractType>
     {
+        public Guid Id { get; set; }
         public string Type { get; set; } = null!;
-        public bool IsDeleted { get; set; } = false;
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<ContractType, ContractTypeLookupDto>()
                 .ForMember(contractTypeDto => contractTypeDto.Type,
-                    opt => opt.MapFrom(contractType => contractType.Type))
-                .ForMember(contractTypeDto => contractTypeDto.IsDeleted,
-                    opt => opt.MapFrom(contractType => contractType.IsDeleted));
+                    opt => opt.MapFrom(contractType => contractType.Type));
         }
     }
 }
