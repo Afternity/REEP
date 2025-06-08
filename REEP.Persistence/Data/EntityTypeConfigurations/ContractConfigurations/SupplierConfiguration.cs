@@ -26,6 +26,7 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations
                 .HasMaxLength(50);
             builder.Property(supplier => supplier.OtherName)
                 .HasMaxLength(100);
+            //не дописал Number
             builder.Property(supplier => supplier.Email)
                 .HasMaxLength(50)
                 .HasAnnotation("RegularExpression", @"^[^@\s]+@[^@\s]+\.[^@\s]+$");

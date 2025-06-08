@@ -15,7 +15,7 @@ namespace REEP.Application.Features.ContractFeatures.Payments.Queries.GetPayment
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Payment,  PaymentLookupDto>()
+            profile.CreateMap<Payment, PaymentLookupDto>()
                 .ForMember(destination => destination.Type,
                      options => options.MapFrom(soure => soure.PaymentType.Type));
         }
