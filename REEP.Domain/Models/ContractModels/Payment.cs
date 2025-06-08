@@ -8,6 +8,7 @@ namespace REEP.Domain.Models.ContractModels
     {
         public Guid Id { get; set; }
         public decimal Price { get; set; } = decimal.Zero;
+        public string? OtherPrice {  get; set; } 
         public DateOnly FirstPay { get; set; }
         public TimeSpan PeriodPay { get; set; }
         public DateOnly LastPay { get; set; }

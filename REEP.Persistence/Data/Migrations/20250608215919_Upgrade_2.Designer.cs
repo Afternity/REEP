@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using REEP.Persistence.Data.DbContexts;
@@ -11,9 +12,11 @@ using REEP.Persistence.Data.DbContexts;
 namespace REEP.Persistence.Data.Migrations
 {
     [DbContext(typeof(ReepDbContext))]
-    partial class ReepDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250608215919_Upgrade_2")]
+    partial class Upgrade_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,5 +1,6 @@
 ﻿using REEP.Domain.InterfaceModels;
 using REEP.Domain.Models.PassportModels.PassportTypeModels;
+using REEP.Domain.Models.WarrantyModels;
 
 namespace REEP.Domain.Models.PassportModels
 {
@@ -16,6 +17,8 @@ namespace REEP.Domain.Models.PassportModels
         public EquipmentType EquipmentType { get; set; } = null!;
         public Guid? TechnicalParameterId { get; set; }
         public TechnicalParameter? TechnicalParameter { get; set; } = null!;
+        public Guid? WarrantyId { get; set; }
+        public Warranty? Warranty { get; set; } = null!;
         public ICollection<EquipmentPassport> EquipmentPassports { get; set; } = [];
     }
 }

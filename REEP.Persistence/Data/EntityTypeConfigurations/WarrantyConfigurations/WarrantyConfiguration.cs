@@ -50,9 +50,9 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.WarrantyConfigurations
                 .WithMany(warrantyType => warrantyType.Warranties)
                 .HasForeignKey(warranty => warranty.WarrantyTypeId)
                 .OnDelete(DeleteBehavior.Restrict);
-            builder.HasMany(warranty => warranty.EquipmentPassports)
-                .WithOne(equipmentPassport => equipmentPassport.Warranty)
-                .HasForeignKey(equipmentPassport => equipmentPassport.WarrantyId)
+            builder.HasMany(warranty => warranty.Equipments)
+                .WithOne(equipment => equipment.Warranty)
+                .HasForeignKey(equipment => equipment.WarrantyId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

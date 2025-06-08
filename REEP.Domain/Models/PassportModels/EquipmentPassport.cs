@@ -17,8 +17,6 @@ namespace REEP.Domain.Models.PassportModels
         public User? UserUsed { get; set; } 
         public Guid UserGrantAccessId { get; set; }
         public User UserGrantAccess { get; set; } = null!;
-        public Guid WarrantyId { get; set; }
-        public Warranty Warranty { get; set; } = null!;
         public Guid EquipmentId { get; set; }
         public Equipment Equipment { get; set; } = null!;
         public Guid LocationId { get; set; }

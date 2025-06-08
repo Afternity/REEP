@@ -19,7 +19,6 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
             builder.HasIndex(equipmentPassport => equipmentPassport.IsDeleted);
             builder.HasIndex(equipmentPassport => equipmentPassport.UserUsedId);
             builder.HasIndex(equipmentPassport => equipmentPassport.EquipmentId);
-            builder.HasIndex(equipmentPassport => equipmentPassport.WarrantyId);
             builder.HasIndex(equipmentPassport => equipmentPassport.StatusId);
 
             builder.Property(equipmentPassport => equipmentPassport.Number)
@@ -55,11 +54,6 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
             builder.HasOne(equipmentPassport => equipmentPassport.Status)
                 .WithMany(status => status.EquipmentPassports)
                 .HasForeignKey(equipmentPassport => equipmentPassport.StatusId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(equipmentPassport => equipmentPassport.Warranty)
-                .WithMany(warranty => warranty.EquipmentPassports)
-                .HasForeignKey(equipmentPassport => equipmentPassport.WarrantyId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(equipmentPassport => equipmentPassport.Location)

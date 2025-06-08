@@ -21,6 +21,6 @@ namespace REEP.Domain.Models.WarrantyModels
         public Contract Contract { get; set; } = null!;
         public Guid WarrantyTypeId { get; set; }
         public WarrantyType WarrantyType { get; set; } = null!;
-        public ICollection<EquipmentPassport> EquipmentPassports { get; set; } = [];
+        public ICollection<Equipment> Equipments{ get; set; } = [];
     }
 }

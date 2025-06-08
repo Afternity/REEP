@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using REEP.Persistence.Data.DbContexts;
@@ -11,9 +12,11 @@ using REEP.Persistence.Data.DbContexts;
 namespace REEP.Persistence.Data.Migrations
 {
     [DbContext(typeof(ReepDbContext))]
-    partial class ReepDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250608214711_Upgrade")]
+    partial class Upgrade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -652,7 +655,7 @@ namespace REEP.Persistence.Data.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("WarrantyId")
+                    b.Property<Guid>("WarrantyId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -1333,7 +1336,8 @@ namespace REEP.Persistence.Data.Migrations
                     b.HasOne("REEP.Domain.Models.WarrantyModels.Warranty", "Warranty")
                         .WithMany("Equipments")
                         .HasForeignKey("WarrantyId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("EquipmentType");
 

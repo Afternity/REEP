@@ -21,6 +21,8 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.ContractConfigurations
                 .IsRequired()
                 .HasColumnType("numeric(18, 2)")
                 .HasDefaultValue(decimal.Zero);
+            builder.Property(payment => payment.OtherPrice)
+                .HasMaxLength(50);
             builder.Property(payment => payment.FirstPay)
                 .IsRequired()
                 .HasColumnType("date");

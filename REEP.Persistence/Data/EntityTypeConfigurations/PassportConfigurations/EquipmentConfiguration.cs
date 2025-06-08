@@ -44,6 +44,10 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.PassportConfigurations
                 .HasForeignKey(equipment => equipment.TechnicalParameterId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(equipment => equipment.Warranty)
+                .WithMany(warranty => warranty.Equipments)
+                .HasForeignKey(equipment => equipment.WarrantyId)
+                .OnDelete(DeleteBehavior.SetNull);
             builder.HasMany(equipment => equipment.EquipmentPassports)
                 .WithOne(equipmentPassport => equipmentPassport.Equipment)
                 .HasForeignKey(equipmentPassport => equipmentPassport.EquipmentId)
