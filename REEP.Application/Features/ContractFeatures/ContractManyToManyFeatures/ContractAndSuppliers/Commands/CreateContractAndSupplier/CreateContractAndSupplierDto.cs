@@ -7,7 +7,7 @@ namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.
         : IMapWith<CreateContractAndSupplierCommand>
     {
         public Guid ContractId { get; set; }
-        public Guid PaymentId { get; set; }
+        public Guid SupplierId { get; set; }
         public bool IsActive { get; set; } = true;
         public bool IsDeleted { get; set; } = false;
 

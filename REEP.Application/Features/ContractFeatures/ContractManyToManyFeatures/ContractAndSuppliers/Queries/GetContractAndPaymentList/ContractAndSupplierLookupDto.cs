@@ -24,7 +24,7 @@ namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ContractAndSupplier, ContractAndSupplierDetailsVm>()
+            profile.CreateMap<ContractAndSupplier, ContractAndSupplierLookupDto>()
                 .ForMember(destination => destination.ContractName,
                     options => options.MapFrom(source => source.Contract.Name))
                 .ForMember(destination => destination.ContractType,
