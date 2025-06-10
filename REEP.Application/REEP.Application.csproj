@@ -19,8 +19,4 @@
     <ProjectReference Include="..\REEP.Domain\REEP.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\ContractFeatures\ContractManyToManyFeatures\ContractAndSuppliers\" />
-  </ItemGroup>
-
 </Project>

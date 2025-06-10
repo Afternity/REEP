@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndSuppliers.Commands.SoftDeleteContractAndSupplier
 {
-    internal class SoftDeleteContractAndSupplierCommand
+    public class SoftDeleteContractAndSupplierCommand
+        : IRequest<Unit>
     {
+        public Guid ContractId { get; set; }
+        public Guid SupplierId { get; set; }
+        public bool IsDeleted { get; set; } = true;
     }
 }

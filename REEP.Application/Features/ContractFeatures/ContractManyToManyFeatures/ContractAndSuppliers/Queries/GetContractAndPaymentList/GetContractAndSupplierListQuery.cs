@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndSuppliers.Queries.GetContractAndPaymentList
 {
-    internal class GetContractAndSupplierListQuery
+    public class GetContractAndSupplierListQuery
+        : IRequest<ContractAndSupplierListVm>
     {
+        public bool IsDeleted { get; set; } = false;
     }
 }

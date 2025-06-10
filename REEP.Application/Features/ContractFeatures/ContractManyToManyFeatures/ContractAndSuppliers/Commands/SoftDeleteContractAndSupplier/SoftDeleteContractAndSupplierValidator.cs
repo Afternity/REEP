@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndSuppliers.Commands.SoftDeleteContractAndSupplier
 {
-    internal class SoftDeleteContractAndSupplierValidator
+    public class SoftDeleteContractAndSupplierValidator
+        : AbstractValidator<SoftDeleteContractAndSupplierCommand>
     {
+        public SoftDeleteContractAndSupplierValidator()
+        {
+            RuleFor(command => command.ContractId)
+              .NotEqual(Guid.Empty);
+            RuleFor(command => command.SupplierId)
+                .NotEqual(Guid.Empty);
+            RuleFor(command => command.IsDeleted)
+                .NotNull();
+        }
     }
 }

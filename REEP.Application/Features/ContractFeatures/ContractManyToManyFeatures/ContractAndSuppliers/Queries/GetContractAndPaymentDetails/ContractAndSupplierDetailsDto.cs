@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using REEP.Application.Common.Mappings;
+using REEP.Domain.Models.ContractModels.ContractManyToManyModels;
 
 namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndSuppliers.Queries.GetContractAndPaymentDetails
 {
-    internal class ContractAndSupplierDetailsDto
+    public class ContractAndSupplierDetailsDto
+        : IMapWith<GetContractAndSupplierDetailsQuery>
     {
+        public Guid ContractId { get; set; }
+        public Guid SupplierId { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<ContractAndSupplierDetailsDto, GetContractAndSupplierDetailsQuery>();
+        }
     }
 }

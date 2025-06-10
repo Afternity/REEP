@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndSuppliers.Queries.GetContractAndPaymentDetails
 {
-    internal class GetContractAndSupplierDetailsQuery
+    public class GetContractAndSupplierDetailsQuery
+        : IRequest<ContractAndSupplierDetailsVm>
     {
+        public Guid ContractId { get; set; }
+        public Guid SupplierId { get; set; }
     }
 }
