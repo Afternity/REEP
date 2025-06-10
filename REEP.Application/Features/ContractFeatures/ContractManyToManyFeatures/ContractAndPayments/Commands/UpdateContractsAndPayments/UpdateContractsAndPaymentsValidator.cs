@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.UpdateContractsAndPayments
 {
-    internal class UpdateContractsAndPaymentsValidator
+    public class UpdateContractsAndPaymentsValidator
+        : AbstractValidator<UpdateContractsAndPaymentsCommand>
     {
+        public UpdateContractsAndPaymentsValidator()
+        {
+            RuleFor(command => command.ContractId)
+             .NotEqual(Guid.Empty);
+            RuleFor(command => command.PaymentId)
+                .NotEqual(Guid.Empty);
+            RuleFor(command => command.IsActive)
+                .NotNull();
+        }
     }
 }

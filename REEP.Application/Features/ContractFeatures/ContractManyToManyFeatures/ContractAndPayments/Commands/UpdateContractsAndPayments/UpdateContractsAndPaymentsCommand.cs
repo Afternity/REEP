@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.UpdateContractsAndPayments
 {
-    internal class UpdateContractsAndPaymentsCommand
+    public class UpdateContractsAndPaymentsCommand
+        : IRequest<Unit>
     {
+        public Guid ContractId { get; set; }
+        public Guid PaymentId { get; set; }
+        public bool IsActive { get; set; } = false;
     }
 }

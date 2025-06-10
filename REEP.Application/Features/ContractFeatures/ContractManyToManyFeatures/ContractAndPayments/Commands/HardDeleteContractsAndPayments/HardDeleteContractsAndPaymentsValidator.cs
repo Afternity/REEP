@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.HardDeleteContractsAndPayments
 {
-    internal class HardDeleteContractsAndPaymentsValidator
+    public class HardDeleteContractsAndPaymentsValidator
+        : AbstractValidator<HardDeleteContractsAndPaymentsCommand>
     {
+        public HardDeleteContractsAndPaymentsValidator()
+        {
+            RuleFor(command => command.ContractId)
+                .NotEqual(Guid.Empty);
+            RuleFor(command => command.PaymentId)
+                .NotEqual(Guid.Empty);
+        }
     }
 }
