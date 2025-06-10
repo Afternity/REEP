@@ -19,4 +19,8 @@
     <ProjectReference Include="..\REEP.Persistence\REEP.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\ContractControllers\ContractManyToManyControllers\" />
+  </ItemGroup>
+
 </Project>

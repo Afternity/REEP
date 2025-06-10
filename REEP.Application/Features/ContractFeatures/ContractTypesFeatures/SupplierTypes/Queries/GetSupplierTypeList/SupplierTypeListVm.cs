@@ -1,7 +1,7 @@
 ﻿namespace REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Queries.GetSupplierTypeList
 {
-    public class SupplierTypeListVm
+    public class WarrantyTypeListVm
     {
-        public ICollection<SupplierTypeLookupDto> SupplierTypes { get; set; } = [];
+        public ICollection<WarrnatyTypeLookupDto> SupplierTypes { get; set; } = [];
     }
 }

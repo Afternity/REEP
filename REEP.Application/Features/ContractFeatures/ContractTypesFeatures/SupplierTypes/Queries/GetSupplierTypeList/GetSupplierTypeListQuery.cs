@@ -2,7 +2,7 @@
 
 namespace REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Queries.GetSupplierTypeList
 {
-    public class GetSupplierTypeListQuery : IRequest<SupplierTypeListVm>
+    public class GetWarrantyTypeListQuery : IRequest<WarrantyTypeListVm>
     {
         public bool IsDeleted { get; set; } = false;
     }

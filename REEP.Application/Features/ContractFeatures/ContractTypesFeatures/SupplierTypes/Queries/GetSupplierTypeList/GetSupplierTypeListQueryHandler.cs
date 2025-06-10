@@ -8,26 +8,26 @@ using REEP.Application.Interfaces.InterfaceDbContexts;
 
 namespace REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Queries.GetSupplierTypeList
 {
-    public class GetSupplierTypeListQueryHandler
-        : IRequestHandler<GetSupplierTypeListQuery, SupplierTypeListVm>
+    public class GetWarrantyTypeListQueryHandler
+        : IRequestHandler<GetWarrantyTypeListQuery, WarrantyTypeListVm>
     {
         private readonly IReepDbContext _context;
         private readonly IMapper _mapper;
         private readonly ILogger<GetPaymentTypeListQueryHandler> _logger;
 
-        public GetSupplierTypeListQueryHandler(
+        public GetWarrantyTypeListQueryHandler(
             IReepDbContext context, IMapper mapper, ILogger<GetPaymentTypeListQueryHandler> logger) =>
             (_context, _mapper, _logger) = (context, mapper, logger);
 
-        public async Task<SupplierTypeListVm> Handle(GetSupplierTypeListQuery request,
+        public async Task<WarrantyTypeListVm> Handle(GetWarrantyTypeListQuery request,
             CancellationToken cancellationToken)
         {
             var entities = await _context.SupplierTypes
                 .Where(supplierTypes =>supplierTypes.IsDeleted == request.IsDeleted)
-                .ProjectTo<SupplierTypeLookupDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<WarrnatyTypeLookupDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
-            return new SupplierTypeListVm { SupplierTypes = entities };
+            return new WarrantyTypeListVm { SupplierTypes = entities };
         }
     }
 }

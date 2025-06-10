@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\ContractFeatures\ContractManyToManyFeatures\" />
+    <Folder Include="Features\ContractFeatures\ContractManyToManyFeatures\ContractsAndPayments\" />
+    <Folder Include="Features\ContractFeatures\ContractManyToManyFeatures\ContractsAndSuppliers\" />
   </ItemGroup>
 
 </Project>

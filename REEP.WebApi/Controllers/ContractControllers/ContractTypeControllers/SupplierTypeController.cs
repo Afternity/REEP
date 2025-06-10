@@ -21,9 +21,9 @@ namespace REEP.WebApi.Controllers.ContractControllers.ContractTypeControllers
             (_mapper, _logger) = (mapper, logger);
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateSupplierTypeDto createSupplierTypeDto)
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateWarrantyTypeDto createSupplierTypeDto)
         {
-            var command = _mapper.Map<CreateSupplierTypeCommand>(createSupplierTypeDto);
+            var command = _mapper.Map<CreateWarrantyTypeCommand>(createSupplierTypeDto);
             var supplieTypeId = await Mediator.Send(command);
             return Ok(supplieTypeId);
         }
@@ -78,10 +78,10 @@ namespace REEP.WebApi.Controllers.ContractControllers.ContractTypeControllers
         }
 
         [HttpGet("{isDeleted}/get-all")]
-        public async Task<ActionResult<SupplierTypeListVm>> GetAll(bool isDeleted)
+        public async Task<ActionResult<WarrantyTypeListVm>> GetAll(bool isDeleted)
         {
             
-            var query = new GetSupplierTypeListQuery()
+            var query = new GetWarrantyTypeListQuery()
             {
                 IsDeleted = isDeleted
             };

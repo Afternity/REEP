@@ -2,10 +2,10 @@
 
 namespace REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Commands.CreateSupplierType
 {
-    public class CreateSupplierTypeValidator 
-        : AbstractValidator<CreateSupplierTypeCommand>
+    public class CreateWarrantyTypeValidator 
+        : AbstractValidator<CreateWarrantyTypeCommand>
     {
-        public CreateSupplierTypeValidator()
+        public CreateWarrantyTypeValidator()
         {
             RuleFor(createSupplierTypeCommand => createSupplierTypeCommand.Type)
                 .NotEmpty().MaximumLength(50);

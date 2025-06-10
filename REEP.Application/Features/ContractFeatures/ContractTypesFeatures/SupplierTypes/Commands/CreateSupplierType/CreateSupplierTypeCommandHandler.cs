@@ -5,18 +5,18 @@ using REEP.Domain.Models.ContractModels.ContractTypeModels;
 
 namespace REEP.Application.Features.ContractFeatures.ContractTypesFeatures.SupplierTypes.Commands.CreateSupplierType
 {
-    public class CreateSupplierTypeCommandHandler
-        : IRequestHandler<CreateSupplierTypeCommand, Guid>
+    public class CreateWarrantyTypeCommandHandler
+        : IRequestHandler<CreateWarrantyTypeCommand, Guid>
     {
         private readonly IReepDbContext _context;
-        private readonly ILogger<CreateSupplierTypeCommandHandler> _logger;
+        private readonly ILogger<CreateWarrantyTypeCommandHandler> _logger;
 
-        public CreateSupplierTypeCommandHandler(
+        public CreateWarrantyTypeCommandHandler(
             IReepDbContext context,
-            ILogger<CreateSupplierTypeCommandHandler> logger) =>
+            ILogger<CreateWarrantyTypeCommandHandler> logger) =>
             (_context, _logger) = (context, logger);
 
-        public async Task<Guid> Handle(CreateSupplierTypeCommand request,
+        public async Task<Guid> Handle(CreateWarrantyTypeCommand request,
             CancellationToken cancellationToken)
         {
             var entity = new SupplierType
