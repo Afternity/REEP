@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using REEP.Application.Common.Mappings;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.CreateContractsAndPayments
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.CreateContractAndPayment
 {
-    public class CreateContractsAndPaymentsDto 
-        : IMapWith<CreateContractsAndPaymentsCommand>
+    public class CreateContractAndPaymentDto 
+        : IMapWith<CreateContractAndPaymentCommand>
     {
         public Guid ContractId { get; set; }
         public Guid PaymentId { get; set; }
@@ -13,7 +13,7 @@ namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CreateContractsAndPaymentsDto, CreateContractsAndPaymentsCommand>();
+            profile.CreateMap<CreateContractAndPaymentDto, CreateContractAndPaymentCommand>();
         }
     }
 }

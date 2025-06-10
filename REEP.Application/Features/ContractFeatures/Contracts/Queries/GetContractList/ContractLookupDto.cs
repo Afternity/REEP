@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
 using REEP.Application.Common.Mappings;
-using REEP.Application.Features.ContractFeatures.Contracts.Queries.GetContractDetails;
 using REEP.Domain.Models.ContractModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
 
 namespace REEP.Application.Features.ContractFeatures.Contracts.Queries.GetContractList
 {

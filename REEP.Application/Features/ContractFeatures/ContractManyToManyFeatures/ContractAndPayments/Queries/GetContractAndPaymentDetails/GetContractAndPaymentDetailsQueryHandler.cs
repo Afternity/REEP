@@ -5,26 +5,26 @@ using REEP.Application.Interfaces.InterfaceDbContexts;
 using REEP.Application.Common.Exceptions;
 using AutoMapper;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Queries.GetContractsAndPaymentsDetails
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Queries.GetContractAndPaymentDetails
 {
-    public class GetContractsAndPaymentsDetailsQueryHandler
-        : IRequestHandler<GetContractsAndPaymentsDetailsQuery, ContractsAndPaymentsDetailsVm>
+    public class GetContractAndPaymentDetailsQueryHandler
+        : IRequestHandler<GetContractAndPaymentDetailsQuery, ContractAndPaymentDetailsVm>
     {
         private readonly IReepDbContext _context;
         private readonly IMapper _mapper;
-        private readonly ILogger<GetContractsAndPaymentsDetailsQueryHandler> _logger;
+        private readonly ILogger<GetContractAndPaymentDetailsQueryHandler> _logger;
 
-        public GetContractsAndPaymentsDetailsQueryHandler(
+        public GetContractAndPaymentDetailsQueryHandler(
             IReepDbContext context,
             IMapper mapper,
-            ILogger<GetContractsAndPaymentsDetailsQueryHandler> logger)
+            ILogger<GetContractAndPaymentDetailsQueryHandler> logger)
         {
             _context = context;
             _mapper = mapper;
             _logger = logger;
         }
 
-        public async Task<ContractsAndPaymentsDetailsVm> Handle(GetContractsAndPaymentsDetailsQuery request,
+        public async Task<ContractAndPaymentDetailsVm> Handle(GetContractAndPaymentDetailsQuery request,
             CancellationToken cancellationToken)
         {
             var entity = await _context.ContractsAndPayments
@@ -40,7 +40,7 @@ namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.
             if (entity == null) 
                 throw new NotFoundException(nameof(entity), request);
 
-            return _mapper.Map<ContractsAndPaymentsDetailsVm>(entity);
+            return _mapper.Map<ContractAndPaymentDetailsVm>(entity);
         }
     }
 }

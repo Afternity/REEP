@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.SoftDeleteContractsAndPayments
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.SoftDeleteContractAndPayment
 {
-    public class SoftDeleteContractsAndPaymentsCommand
+    public class SoftDeleteContractAndPaymentCommand
         : IRequest<Unit>
     {
         public Guid ContractId { get; set; }

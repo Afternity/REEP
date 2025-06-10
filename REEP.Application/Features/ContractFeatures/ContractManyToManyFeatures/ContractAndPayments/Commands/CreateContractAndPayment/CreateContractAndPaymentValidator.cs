@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.CreateContractsAndPayments
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.CreateContractAndPayment
 {
-    public class CreateContractsAndPaymentsValidator
-        : AbstractValidator<CreateContractsAndPaymentsCommand>
+    public class CreateContractAndPaymentValidator
+        : AbstractValidator<CreateContractAndPaymentCommand>
     {
-        public CreateContractsAndPaymentsValidator()
+        public CreateContractAndPaymentValidator()
         {
             RuleFor(command => command.ContractId)
                 .NotEqual(Guid.Empty);

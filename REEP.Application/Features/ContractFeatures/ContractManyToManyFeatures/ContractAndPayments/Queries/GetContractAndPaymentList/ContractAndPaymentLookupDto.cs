@@ -2,9 +2,9 @@
 using REEP.Application.Common.Mappings;
 using REEP.Domain.Models.ContractModels.ContractManyToManyModels;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Queries.GetContractsAndPaymentsList
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Queries.GetContractAndPaymentList
 {
-    public class ContractsAndPaymentsLookupDto
+    public class ContractAndPaymentLookupDto
         : IMapWith<ContractAndPayment>
     {
         public Guid ContractId { get; set; }
@@ -19,7 +19,7 @@ namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ContractAndPayment, ContractsAndPaymentsLookupDto>()
+            profile.CreateMap<ContractAndPayment, ContractAndPaymentLookupDto>()
                 .ForMember(destination => destination.ContractName,
                     options => options.MapFrom(source => source.Contract.Name))
                 .ForMember(destination => destination.ContractType,

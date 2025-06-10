@@ -4,23 +4,23 @@ using Microsoft.Extensions.Logging;
 using REEP.Application.Common.Exceptions;
 using REEP.Application.Interfaces.InterfaceDbContexts;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.SoftDeleteContractsAndPayments
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.SoftDeleteContractAndPayment
 {
-    public class SoftDeleteContractsAndPaymentsCommandHandler
-        : IRequestHandler<SoftDeleteContractsAndPaymentsCommand, Unit>
+    public class SoftDeleteContractAndPaymentCommandHandler
+        : IRequestHandler<SoftDeleteContractAndPaymentCommand, Unit>
     {
         private readonly IReepDbContext _context;
-        private readonly ILogger<SoftDeleteContractsAndPaymentsCommandHandler> _logger;
+        private readonly ILogger<SoftDeleteContractAndPaymentCommandHandler> _logger;
 
-        public SoftDeleteContractsAndPaymentsCommandHandler(
+        public SoftDeleteContractAndPaymentCommandHandler(
             IReepDbContext context,
-            ILogger<SoftDeleteContractsAndPaymentsCommandHandler> logger)
+            ILogger<SoftDeleteContractAndPaymentCommandHandler> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        public async Task<Unit> Handle(SoftDeleteContractsAndPaymentsCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(SoftDeleteContractAndPaymentCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.ContractsAndPayments
                .FirstOrDefaultAsync(contractsAndPayments =>

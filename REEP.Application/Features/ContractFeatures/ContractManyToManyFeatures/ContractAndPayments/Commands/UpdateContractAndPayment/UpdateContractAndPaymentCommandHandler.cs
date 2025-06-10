@@ -4,23 +4,23 @@ using Microsoft.Extensions.Logging;
 using REEP.Application.Common.Exceptions;
 using REEP.Application.Interfaces.InterfaceDbContexts;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.UpdateContractsAndPayments
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.UpdateContractAndPayment
 {
-    public class UpdateContractsAndPaymentsCommandHandler
-        : IRequestHandler<UpdateContractsAndPaymentsCommand, Unit>
+    public class UpdateContractAndPaymentCommandHandler
+        : IRequestHandler<UpdateContractAndPaymentCommand, Unit>
     {
         private readonly IReepDbContext _context;
-        private readonly ILogger<UpdateContractsAndPaymentsCommandHandler> _logger;
+        private readonly ILogger<UpdateContractAndPaymentCommandHandler> _logger;
 
-        public UpdateContractsAndPaymentsCommandHandler(
+        public UpdateContractAndPaymentCommandHandler(
             IReepDbContext context,
-            ILogger<UpdateContractsAndPaymentsCommandHandler> logger)
+            ILogger<UpdateContractAndPaymentCommandHandler> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        public async Task<Unit> Handle(UpdateContractsAndPaymentsCommand request,
+        public async Task<Unit> Handle(UpdateContractAndPaymentCommand request,
             CancellationToken cancellationToken)
         {
             var entity = await _context.ContractsAndPayments

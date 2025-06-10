@@ -4,23 +4,23 @@ using Microsoft.Extensions.Logging;
 using REEP.Application.Common.Exceptions;
 using REEP.Application.Interfaces.InterfaceDbContexts;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.HardDeleteContractsAndPayments
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.HardDeleteContractAndPayment
 {
-    public class HardDeleteContractsAndPaymentsCommandHandler
-        : IRequestHandler<HardDeleteContractsAndPaymentsCommand, Unit>
+    public class HardDeleteContractAndPaymentCommandHandler
+        : IRequestHandler<HardDeleteContractAndPaymentCommand, Unit>
     {
         private readonly IReepDbContext _context;
-        private readonly ILogger<HardDeleteContractsAndPaymentsCommandHandler> _logger;
+        private readonly ILogger<HardDeleteContractAndPaymentCommandHandler> _logger;
 
-        public HardDeleteContractsAndPaymentsCommandHandler(
+        public HardDeleteContractAndPaymentCommandHandler(
             IReepDbContext context,
-            ILogger<HardDeleteContractsAndPaymentsCommandHandler> logger)
+            ILogger<HardDeleteContractAndPaymentCommandHandler> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        public async Task<Unit> Handle(HardDeleteContractsAndPaymentsCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(HardDeleteContractAndPaymentCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.ContractsAndPayments
                 .FirstOrDefaultAsync(contractsAndPayments =>

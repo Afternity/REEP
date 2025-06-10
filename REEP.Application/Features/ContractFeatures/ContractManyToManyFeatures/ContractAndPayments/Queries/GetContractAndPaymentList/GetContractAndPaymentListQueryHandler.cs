@@ -5,26 +5,26 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using REEP.Application.Interfaces.InterfaceDbContexts;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Queries.GetContractsAndPaymentsList
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Queries.GetContractAndPaymentList
 {
-    internal class GetContractsAndPaymentsListQueryHandler
-        : IRequestHandler<GetContractsAndPaymentsListQuery, ContractsAndPaymentsListVm>
+    internal class GetContractAndPaymentListQueryHandler
+        : IRequestHandler<GetContractAndPaymentListQuery, ContractAndPaymentListVm>
     {
         private readonly IReepDbContext _context;
         private readonly IMapper _mapper;
-        private readonly ILogger<GetContractsAndPaymentsListQueryHandler> _logger;
+        private readonly ILogger<GetContractAndPaymentListQueryHandler> _logger;
 
-        public GetContractsAndPaymentsListQueryHandler(
+        public GetContractAndPaymentListQueryHandler(
             IReepDbContext context,
             IMapper mapper,
-            ILogger<GetContractsAndPaymentsListQueryHandler> logger)
+            ILogger<GetContractAndPaymentListQueryHandler> logger)
         {
             _context = context;
             _mapper = mapper;
             _logger = logger;
         }
 
-        public async Task<ContractsAndPaymentsListVm> Handle(GetContractsAndPaymentsListQuery request,
+        public async Task<ContractAndPaymentListVm> Handle(GetContractAndPaymentListQuery request,
             CancellationToken cancellationToken)
         {
             var entities = await _context.ContractsAndPayments
@@ -33,10 +33,10 @@ namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.
                 .Include(parent => parent.Payment)
                     .ThenInclude(child => child.PaymentType)
                 .Where(contractsAndPayments => contractsAndPayments.IsDeleted == request.IsDeleted)
-                .ProjectTo<ContractsAndPaymentsLookupDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<ContractAndPaymentLookupDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
-            return new ContractsAndPaymentsListVm() { ContractsAndPayments = entities };
+            return new ContractAndPaymentListVm() { ContractsAndPayments = entities };
         }
     }
 }

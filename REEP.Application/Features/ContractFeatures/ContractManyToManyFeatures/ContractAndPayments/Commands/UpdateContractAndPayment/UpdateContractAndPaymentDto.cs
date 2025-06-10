@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.UpdateContractsAndPayments
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.UpdateContractAndPayment
 {
-    public class UpdateContractsAndPaymentsDto
-        : IMapWith<UpdateContractsAndPaymentsCommand>
+    public class UpdateContractAndPaymentDto
+        : IMapWith<UpdateContractAndPaymentCommand>
     {
         public Guid ContractId { get; set; }
         public Guid PaymentId { get; set; }
@@ -17,7 +17,7 @@ namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<UpdateContractsAndPaymentsDto, UpdateContractsAndPaymentsCommand>();
+            profile.CreateMap<UpdateContractAndPaymentDto, UpdateContractAndPaymentCommand>();
         }
     }
 }

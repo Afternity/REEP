@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.CreateContractsAndPayments
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.CreateContractAndPayment
 {
-    public class CreateContractsAndPaymentsCommand
+    public class CreateContractAndPaymentCommand
         : IRequest<Unit>
     {
         public Guid ContractId { get; set; }

@@ -3,23 +3,23 @@ using Microsoft.Extensions.Logging;
 using REEP.Application.Interfaces.InterfaceDbContexts;
 using REEP.Domain.Models.ContractModels.ContractManyToManyModels;
 
-namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.CreateContractsAndPayments
+namespace REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.ContractAndPayments.Commands.CreateContractAndPayment
 {
-    public class CreateContractsAndPaymentsCommandHandler
-        : IRequestHandler<CreateContractsAndPaymentsCommand, Unit>
+    public class CreateContractAndPaymentCommandHandler
+        : IRequestHandler<CreateContractAndPaymentCommand, Unit>
     {
         private readonly IReepDbContext _context;
-        private readonly ILogger<CreateContractsAndPaymentsCommandHandler> _logger;
+        private readonly ILogger<CreateContractAndPaymentCommandHandler> _logger;
 
-        public CreateContractsAndPaymentsCommandHandler(
+        public CreateContractAndPaymentCommandHandler(
             IReepDbContext context,
-            ILogger<CreateContractsAndPaymentsCommandHandler> logger)
+            ILogger<CreateContractAndPaymentCommandHandler> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        public async Task<Unit> Handle(CreateContractsAndPaymentsCommand request,
+        public async Task<Unit> Handle(CreateContractAndPaymentCommand request,
             CancellationToken cancellationToken)
         {
             var entity = new ContractAndPayment()
