@@ -1,11 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using REEP.Application.Features.ContractFeatures.Payments.Commands.CreatePayment;
-using REEP.Application.Features.ContractFeatures.Payments.Commands.HardDeletePayment;
-using REEP.Application.Features.ContractFeatures.Payments.Commands.SoftDeletePayment;
-using REEP.Application.Features.ContractFeatures.Payments.Commands.UpdatePayment;
-using REEP.Application.Features.ContractFeatures.Payments.Queries.GetPaymentDetails;
-using REEP.Application.Features.ContractFeatures.Payments.Queries.GetPaymentList;
 using REEP.Application.Features.ContractFeatures.Suppliers.Commands.CreateSupplier;
 using REEP.Application.Features.ContractFeatures.Suppliers.Commands.HardDeleteSupplier;
 using REEP.Application.Features.ContractFeatures.Suppliers.Commands.SoftDeleteSupplier;

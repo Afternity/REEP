@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.Options;
 using REEP.Application.Common.Mappings;
 using REEP.Domain.Models.ContractModels;
 
@@ -21,7 +20,7 @@ namespace REEP.Application.Features.ContractFeatures.Contracts.Queries.GetContra
         {
             profile.CreateMap<Contract, ContractDetailsVm>()
                 .ForMember(destination => destination.Type,
-                    options => options.MapFrom(soure => soure.ContractType.Type));
+                    options => options.MapFrom(source => source.ContractType.Type));
         }
     }
 }
