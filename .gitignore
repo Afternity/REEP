@@ -482,3 +482,10 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+### Identity-specific ###
+tempkey.jwk
+*.jwt
+/secrets.json
+appsettings.*.json
+!appsettings.json

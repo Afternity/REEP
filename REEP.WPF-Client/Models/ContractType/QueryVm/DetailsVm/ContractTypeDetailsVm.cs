@@ -2,7 +2,7 @@
 {
     public class ContractTypeDetailsVm
     {
-        public string Type { get; set; }
+        public string Type { get; set; } = null!;
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
