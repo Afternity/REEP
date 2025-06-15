@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace REEP.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize]
     public class BaseContraller : ControllerBase
     {

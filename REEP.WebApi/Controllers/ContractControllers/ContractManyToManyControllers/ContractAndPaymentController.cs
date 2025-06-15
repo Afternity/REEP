@@ -9,6 +9,7 @@ using REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.Cont
 
 namespace REEP.WebApi.Controllers.ContractControllers.ContractManyToManyControllers
 {
+    [ApiVersion("1.0")]
     public class ContractAndPaymentController : BaseContraller
     {
         private IMapper _mapper;
