@@ -1,48 +1,52 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using REEP.Application.Interfaces.InterfaceDbContexts;
 using REEP.Application.Common.Exceptions;
+using REEP.Application.Features.ContractFeatures.Suppliers.Commands.CreateSupplier;
+using REEP.Application.Interfaces.InterfaceDbContexts;
 using REEP.Domain.Models.ContractModels;
+using REEP.Domain.Models.UserModels;
 
-namespace REEP.Application.Features.ContractFeatures.Suppliers.Commands.CreateSupplier
+
+namespace REEP.Application.Features.UserFeatures.Users.Commands.CreateUser
 {
-    public class CreateSupplierCommandHandler
-        : IRequestHandler<CreateSupplierCommand, Guid>
+    public class CreateUserCommandHandler
+        : IRequestHandler<CreateUserCommand, Guid>
     {
         private readonly IReepDbContext _context;
-        private readonly ILogger<CreateSupplierCommandHandler> _logger;
+        private readonly ILogger<CreateUserCommandHandler> _logger;
 
-        public CreateSupplierCommandHandler(
+        public CreateUserCommandHandler(
             IReepDbContext context,
-            ILogger<CreateSupplierCommandHandler> logger) =>
+            ILogger<CreateUserCommandHandler> logger) =>
             (_context, _logger) = (context, logger);
 
-        public async Task<Guid> Handle(CreateSupplierCommand request,
+        public async Task<Guid> Handle(CreateUserCommand request,
             CancellationToken cancellationToken)
         {
-            var parent = await _context.SupplierTypes
-                .FirstOrDefaultAsync(supplierType => supplierType.Type == request.Type, cancellationToken);
+            var parent = await _context.UserTypes
+                .FirstOrDefaultAsync(userType =>
+                    userType.Type == request.Type,
+                    cancellationToken);
 
             if (parent == null)
                 throw new NotFoundException(nameof(parent), request.Type);
 
-            var entity = new Supplier()
+            var entity = new User()
             {
                 Id = Guid.NewGuid(),
                 FirstName = request.FirstName,
                 SecondName = request.SecondName,
                 LastName = request.LastName,
-                OtherName = request.OtherName,
-                Number = request.Number,
                 Email = request.Email,
                 OtherContacts = request.OtherContacts,
+                Password = request.Password,
                 CreatedAt = DateTime.UtcNow,
                 IsDeleted = request.IsDeleted,
-                SupplierTypeId = parent.Id,
+                UserTypeId = parent.Id,
             };
 
-            await _context.Suppliers.AddAsync(entity, cancellationToken);
+            await _context.Users.AddAsync(entity, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
             return entity.Id;

@@ -1,9 +1,15 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using REEP.Application.Common.Mappings;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace REEP.Application.Features.UserFeatures.Users.Commands.CreateUser
 {
-    public class CreateUserCommand
-        : IRequest<Guid>
+    public class CreateUserDto
+        : IMapWith<CreateUserCommand>
     {
         public string FirstName { get; set; } = null!;
         public string SecondName { get; set; } = null!;
@@ -13,5 +19,10 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.CreateUser
         public string Password { get; set; } = null!;
         public bool IsDeleted { get; set; } = false;
         public string Type { get; set; } = null!;
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<CreateUserDto, CreateUserCommand>();
+        }
     }
 }
