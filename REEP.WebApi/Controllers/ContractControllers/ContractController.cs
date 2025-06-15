@@ -10,6 +10,7 @@ using REEP.Application.Features.ContractFeatures.Contracts.Queries.GetContractLi
 namespace REEP.WebApi.Controllers.ContractControllers
 {
     [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ContractController : BaseContraller
     {
         private readonly IMapper _mapper;

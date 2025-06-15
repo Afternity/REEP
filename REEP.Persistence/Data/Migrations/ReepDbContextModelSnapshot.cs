@@ -1020,14 +1020,10 @@ namespace REEP.Persistence.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<byte[]>("PasswordHash")
+                    b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("bytea");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("bytea");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("SecondName")
                         .IsRequired()
@@ -1050,6 +1046,9 @@ namespace REEP.Persistence.Data.Migrations
                         .IsUnique();
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("Password")
+                        .IsUnique();
 
                     b.HasIndex("UpdatedAt");
 

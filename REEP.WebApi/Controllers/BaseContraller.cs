@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace REEP.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class BaseContraller : ControllerBase
     {
         private IMediator _mediator;

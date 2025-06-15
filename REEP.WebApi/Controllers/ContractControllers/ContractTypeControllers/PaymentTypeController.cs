@@ -11,6 +11,7 @@ using REEP.Application.Features.ContractFeatures.ContractTypesFeatures.PaymentTy
 namespace REEP.WebApi.Controllers.ContractControllers.ContractTypeControllers
 {
     [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class PaymentTypeController : BaseContraller
     {
         private readonly IMapper _mapper;

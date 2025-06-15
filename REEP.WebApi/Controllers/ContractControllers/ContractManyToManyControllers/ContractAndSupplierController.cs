@@ -10,7 +10,7 @@ using REEP.Application.Features.ContractFeatures.ContractManyToManyFeatures.Cont
 
 namespace REEP.WebApi.Controllers.ContractControllers.ContractManyToManyControllers
 {
-    [ApiVersion("2.0")]
+    [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class ContractAndSupplierController : BaseContraller
     {

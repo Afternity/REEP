@@ -34,29 +34,33 @@ builder.Services.AddApplication();
 builder.Services.AddDatabaseServices(builder.Configuration);
 builder.Services.AddControllers();
 
-builder.Services.AddAuthentication(config =>
-{
-    config.DefaultAuthenticateScheme =
-        JwtBearerDefaults.AuthenticationScheme;
-    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-    .AddJwtBearer("Bearer", options =>
-    {
-        options.Authority = "https://localhost:7218/";
-        options.Audience = "REEP-WebAPI";
-        options.RequireHttpsMetadata = false;
-    });
+//builder.Services.AddAuthentication(config =>
+//{
+//    config.DefaultAuthenticateScheme =
+//        JwtBearerDefaults.AuthenticationScheme;
+//    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//})
+//    .AddJwtBearer("Bearer", options =>
+//    {
+//        options.Authority = "https://localhost:7218/";
+//        options.Audience = "REEP-WebAPI";
+//        options.RequireHttpsMetadata = false;
+//    });
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new ApiVersion(1, 0);
     options.AssumeDefaultVersionWhenUnspecified = true;
     options.ReportApiVersions = true;
-    options.ApiVersionReader = new UrlSegmentApiVersionReader(); 
+    options.ApiVersionReader = ApiVersionReader.Combine(
+        new UrlSegmentApiVersionReader(),
+        new HeaderApiVersionReader("x-api-version"),
+        new QueryStringApiVersionReader("api-version"));
 });
 builder.Services.AddVersionedApiExplorer(options =>
 {
     options.GroupNameFormat = "'v'VVV";
     options.SubstituteApiVersionInUrl = true;
+    options.DefaultApiVersion = new ApiVersion(1, 0);
 });
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>,
     ConfigureSwaggerOptions>();
@@ -82,12 +86,11 @@ app.UseCustomExceptionHandler();
 app.UseRouting();
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
 app.UseApiVersioning();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
-
 app.Run();

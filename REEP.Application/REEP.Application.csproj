@@ -19,4 +19,11 @@
     <ProjectReference Include="..\REEP.Domain\REEP.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\PassportFeatures\" />
+    <Folder Include="Features\MaitenanceFeatures\" />
+    <Folder Include="Features\UserFeatures\Users\Queries\" />
+    <Folder Include="Features\WarrantyFeatures\" />
+  </ItemGroup>
+
 </Project>

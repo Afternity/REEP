@@ -34,30 +34,21 @@ namespace REEP.Identity
             {
                 new Client()
                 {
-                    ClientId = "reep-web-api",
-                    ClientName = "REEP Web",
-                    AllowedGrantTypes = GrantTypes.Code,
+                    ClientId = "reep-wpf-client", // Измените для WPF
+                    ClientName = "REEP WPF Client",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     RequireClientSecret = false,
-                    RequirePkce = true,
-                    RedirectUris =
-                    {
-                        "http://.../signic-oidc" // липовая строка, с неверныим uri
-                    },
-                    AllowedCorsOrigins =
-                    {
-                        "http://..."
-                    },
-                    PostLogoutRedirectUris =
-                    {
-                        "http:/.../signout-oidc"
-                    },
+                    RequirePkce = false, // Для ResourceOwnerPassword не требуется
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "REEP-WebAPI"
+                        "REEP-WebApi" // Исправлено на правильное написание
                     },
-                    AllowAccessTokensViaBrowser = true
+                    AllowOfflineAccess = true, // Для refresh токенов
+                    AccessTokenLifetime = 3600, // 1 час
+                    RefreshTokenExpiration = TokenExpiration.Sliding,
+                    SlidingRefreshTokenLifetime = 2592000 // 30 дней
                 }
             };
     }

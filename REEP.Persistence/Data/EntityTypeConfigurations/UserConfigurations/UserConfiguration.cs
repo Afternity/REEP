@@ -12,6 +12,8 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.UserConfigurations
 
             builder.HasIndex(user => user.Email)
                 .IsUnique();
+            builder.HasIndex(user => user.Password)
+                .IsUnique();
             builder.HasIndex(user => user.CreatedAt);
             builder.HasIndex(user => user.UpdatedAt);
             builder.HasIndex(user => user.DeletedAt);
@@ -31,13 +33,9 @@ namespace REEP.Persistence.Data.EntityTypeConfigurations.UserConfigurations
                 .HasAnnotation("RegularExpression", @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
             builder.Property(user => user.OtherContacts)
                 .HasMaxLength(100);
-            builder.Property(user => user.PasswordHash)
+            builder.Property(user => user.Password)
                 .IsRequired()
-                .HasMaxLength(64)
-                .HasColumnType("bytea");
-            builder.Property(user => user.PasswordSalt)
-                .IsRequired()
-                .HasColumnType("bytea");
+                .HasMaxLength(100);
             builder.Property(user => user.CreatedAt)
                 .IsRequired()
                 .HasColumnType("timestamp with time zone")

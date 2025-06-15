@@ -1,12 +1,9 @@
-﻿using REEP.WPF_Client.Common.ApiInterfaces;
-using REEP.WPF_Client.Services.ApiServices;
-using REEP.WPF_Client.Services.InfractructureServices;
-using REEP.WPF_Client.ViewModels;
-using REEP.WPF_Client.Views.Client.Admin;
-using REEP.WPF_Client.Views.Infractructure;
+﻿using Microsoft.Extensions.DependencyInjection;
+using REEP.WPF_Client.Frontend.Views.AuthViews;
+using REEP.WPF_Client.Backend.Services.AuthServisec;
+using System.Net.Http.Headers;
 using System.Windows;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using REEP.WPF_Client.Frontend.ViewModels.AuthViewModels;
 
 
 namespace REEP.WPF_Client
@@ -16,44 +13,43 @@ namespace REEP.WPF_Client
     /// </summary>
     public partial class App : Application
     {
+        public static IServiceProvider ServiceProvider { get; private set; }
+        public static string CurrentUsername { get; set; } // Храним имя пользователя
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            try
+            base.OnStartup(e);
+
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+            ServiceProvider = services.BuildServiceProvider();
+
+            // Показываем окно входа
+            var loginWindow = ServiceProvider.GetRequiredService<AuthWindowView>();
+            loginWindow.DataContext = ServiceProvider.GetRequiredService<AuthWindowView>();
+            loginWindow.Show();
+        }
+
+        private void ConfigureServices(IServiceCollection services)
+        {
+            // Настройка HttpClient
+            services.AddHttpClient("ApiClient", client =>
             {
-                ServiceCollection services = new ServiceCollection();
+                client.BaseAddress = new Uri("https://localhost:7110/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+            });
 
-                services.AddHttpClient("ApiClient", client =>
-                {
-                    client.BaseAddress = new Uri("https://localhost:7110/api/");
-                    client.DefaultRequestHeaders.Add("Accept", "application/json");
-                });
+            // Регистрация services
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IApiService, ApiService>();
 
-                services.AddTransient<IContractTypeApi, ContractTypeService>();
+            // Регистрация views
+            services.AddTransient<AuthWindowView>();
 
-                services.AddSingleton<StartupMenuAdminService>();
-                services.AddSingleton<StartupMenuUserService>();
-
-                services.AddTransient<ContractTypeViewModel>();
-                services.AddTransient<StartupMenuAdminView>();
-                services.AddTransient<StartupMenuUserView>();
-
-                services.AddTransient<ContractTypeView>();
-
-                services.AddLogging(configure => configure.AddDebug());
-
-                var builder = services.BuildServiceProvider();
-
-                var view = builder.GetRequiredService<ContractTypeView>();
-                view.DataContext = builder.GetRequiredService<ContractTypeViewModel>();
-                view.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to start application: {ex.Message}", "Error",
-                     MessageBoxButton.OK, MessageBoxImage.Error);
-                Shutdown();
-            }
+            // Регистрация viewModels
+            services.AddTransient<AuthViewModel>();
         }
     }
-
 }

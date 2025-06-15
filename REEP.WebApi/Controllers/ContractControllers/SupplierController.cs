@@ -10,6 +10,7 @@ using REEP.Application.Features.ContractFeatures.Suppliers.Queries.GetSupplierLi
 namespace REEP.WebApi.Controllers.ContractControllers
 {
     [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class SupplierController: BaseContraller
     {
         private readonly IMapper _mapper;

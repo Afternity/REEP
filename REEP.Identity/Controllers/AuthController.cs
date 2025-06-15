@@ -1,11 +1,8 @@
 ﻿using Duende.IdentityServer.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 using REEP.Identity.Models.DomainModels;
 using REEP.Identity.Models.ViewModels;
-using System.Threading.Tasks;
 
 namespace REEP.Identity.Controllers
 {
