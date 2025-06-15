@@ -6,7 +6,7 @@ namespace REEP.WebApi.Controllers
 {
     [ApiController]
     //[Authorize]
-    public class BaseContraller : ControllerBase
+    public class BaseController : ControllerBase
     {
         private IMediator _mediator;
         protected IMediator Mediator =>

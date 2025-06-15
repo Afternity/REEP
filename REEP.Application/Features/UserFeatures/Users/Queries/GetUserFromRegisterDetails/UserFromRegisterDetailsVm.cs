@@ -2,12 +2,11 @@
 using REEP.Application.Common.Mappings;
 using REEP.Domain.Models.UserModels;
 
-namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserDetails
+namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserFromRegisterDetails
 {
-    public class UserDetailsVm
+    public class UserFromRegisterDetailsVm
         : IMapWith<User>
     {
-        public Guid Id { get; set; }
         public string FirstName { get; set; } = null!;
         public string SecondName { get; set; } = null!;
         public string? LastName { get; set; }
@@ -17,12 +16,12 @@ namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserDetails
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
-        public bool IsDeleted { get; set; } 
+        public bool IsDeleted { get; set; }
         public string Type { get; set; } = null!;
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<User, UserDetailsVm>()
+            profile.CreateMap<User, UserFromRegisterDetailsVm>()
                  .ForMember(destination => destination.Type,
                     options => options.MapFrom(soure => soure.UserType.Type));
         }

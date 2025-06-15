@@ -4,30 +4,29 @@ using Microsoft.Extensions.Logging;
 using REEP.Application.Common.Exceptions;
 using REEP.Application.Interfaces.InterfaceDbContexts;
 
-namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
+namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUserFromProfile
 {
-    public class UpdateUserCommandHandler
-        : IRequestHandler<UpdateUserCommand, Unit>
+    public class UpdateUserFromProfileCommandHandler
+        : IRequestHandler<UpdateUserFromProfileCommand, Unit>
     {
         private readonly IReepDbContext _context;
-        private readonly ILogger<UpdateUserCommandHandler> _logger;
+        private readonly ILogger<UpdateUserFromProfileCommandHandler> _logger;
 
-        public UpdateUserCommandHandler(
+        public UpdateUserFromProfileCommandHandler(
             IReepDbContext context,
-            ILogger<UpdateUserCommandHandler> logger) =>
+            ILogger<UpdateUserFromProfileCommandHandler> logger) =>
             (_context, _logger) = (context, logger);
 
-        public async Task<Unit> Handle(UpdateUserCommand request,
+        public async Task<Unit> Handle(UpdateUserFromProfileCommand request,
             CancellationToken cancellationToken)
         {
             var parent = await _context.UserTypes
                 .FirstOrDefaultAsync(userType =>
-                    userType.Type == request.Type,
+                    userType.Type == "Сотрудник",
                     cancellationToken);
 
             if (parent == null)
-                throw new NotFoundException(nameof(parent), request.Type);
-
+                throw new NotFoundException(nameof(parent), request);
 
             var entity = await _context.Users
                 .FirstOrDefaultAsync(user =>
@@ -37,7 +36,6 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
             if (entity == null)
                 throw new NotFoundException(nameof(entity), request.Id);
 
-            entity.Id = request.Id;
             entity.FirstName = request.FirstName;
             entity.SecondName = request.SecondName;
             entity.LastName = request.LastName;
@@ -45,9 +43,9 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
             entity.OtherContacts = request.OtherContacts;
             entity.Password = request.Password;
             entity.UpdatedAt = DateTime.UtcNow;
+            entity.IsDeleted = false;
             entity.UserTypeId = parent.Id;
-            
-            await _context.Users.AddAsync(entity, cancellationToken);
+
             await _context.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

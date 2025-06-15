@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace REEP.Application.Features.UserFeatures.Users.Commands.SoftDeleteUser
 {
-    internal class SoftDeleteUserValidator
+    public class SoftDeleteUserValidator
+     : AbstractValidator<SoftDeleteUserCommand>
     {
+        public SoftDeleteUserValidator()
+        {
+            RuleFor(command => command.Id)
+                .NotEqual(Guid.Empty);
+            RuleFor(command => command.IsDeleted)
+                .NotNull();
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace REEP.WebApi.Controllers.ContractControllers.ContractTypeControllers
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class PaymentTypeController : BaseContraller
+    public class PaymentTypeController : BaseController
     {
         private readonly IMapper _mapper;
         private readonly ILogger<PaymentTypeController> _logger;

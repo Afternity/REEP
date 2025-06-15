@@ -11,7 +11,7 @@ namespace REEP.WebApi.Controllers.ContractControllers.ContractManyToManyControll
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class ContractAndPaymentController : BaseContraller
+    public class ContractAndPaymentController : BaseController
     {
         private IMapper _mapper;
         private ILogger<ContractAndPaymentController> _logger;

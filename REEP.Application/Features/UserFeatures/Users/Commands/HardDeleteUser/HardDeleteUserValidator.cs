@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace REEP.Application.Features.UserFeatures.Users.Commands.HardDeleteUser
 {
-    internal class HardDeleteUserValidator
+    public class HardDeleteUserValidator
+        : AbstractValidator<HardDeleteUserCommand>
     {
+        public HardDeleteUserValidator()
+        {
+            RuleFor(command => command.Id)
+                .NotEqual(Guid.Empty);
+        }
     }
 }

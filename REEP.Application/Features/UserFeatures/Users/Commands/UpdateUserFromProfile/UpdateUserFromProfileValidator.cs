@@ -1,23 +1,22 @@
 ﻿using FluentValidation;
-using REEP.Application.Features.UserFeatures.Users.Commands.CreateUser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
+namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUserFromProfile
 {
-    public class UpdateUserValidator
-      : AbstractValidator<UpdateUserCommand>
+    public class UpdateUserFromProfileValidator
+        : AbstractValidator<UpdateUserFromProfileCommand>
     {
-        public UpdateUserValidator()
+        public UpdateUserFromProfileValidator()
         {
             RuleFor(command => command.Id)
                 .NotEqual(Guid.Empty);
             RuleFor(command => command.FirstName)
-                .MaximumLength(50)
-                .NotEmpty();
+             .MaximumLength(50)
+             .NotEmpty();
             RuleFor(command => command.SecondName)
                 .MaximumLength(50)
                 .NotEmpty();
@@ -31,9 +30,6 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
                 .NotEmpty();
             RuleFor(command => command.OtherContacts)
                 .MaximumLength(100);
-            RuleFor(command => command.Type)
-                .NotEmpty()
-                .MaximumLength(50);
         }
     }
 }

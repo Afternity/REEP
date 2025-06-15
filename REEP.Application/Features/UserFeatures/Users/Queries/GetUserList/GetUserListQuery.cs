@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserList
 {
-    internal class GetUserListQuery
+    public class GetUserListQuery
+        : IRequest<UserListVm>
     {
+        public bool IsDeleted { get; set; } = false;
     }
 }

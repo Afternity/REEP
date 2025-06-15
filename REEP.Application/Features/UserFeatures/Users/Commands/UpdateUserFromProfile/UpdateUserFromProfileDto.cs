@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using REEP.Application.Common.Mappings;
-using REEP.Domain.Models.UserModels;
 
-namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserList
+namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUserFromProfile
 {
-    public class UserLookupDto
-        : IMapWith<User>
+    public class UpdateUserFromProfileDto
+        : IMapWith<UpdateUserFromProfileCommand>
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; } = null!;
@@ -14,12 +13,10 @@ namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserList
         public string Email { get; set; } = null!;
         public string? OtherContacts { get; set; }
         public string Password { get; set; } = null!;
-        public string Type { get; set; } = null!;
+
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<User, UserLookupDto>()
-                 .ForMember(destination => destination.Type,
-                    options => options.MapFrom(soure => soure.UserType.Type));
+            profile.CreateMap<UpdateUserFromProfileDto, UpdateUserFromProfileCommand>();
         }
     }
 }

@@ -1,13 +1,8 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
+namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUserFromProfile
 {
-    public class UpdateUserCommand
+    public class UpdateUserFromProfileCommand
         : IRequest<Unit>
     {
         public Guid Id { get; set; }
@@ -17,6 +12,5 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
         public string Email { get; set; } = null!;
         public string? OtherContacts { get; set; }
         public string Password { get; set; } = null!;
-        public string Type { get; set; } = null!;
     }
 }

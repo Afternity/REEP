@@ -12,7 +12,7 @@ namespace REEP.WebApi.Controllers.UserControllers.UserTypeControllers
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class UserTypeController : BaseContraller
+    public class UserTypeController : BaseController
     {
         private readonly IMapper _mapper;
         private readonly ILogger<UserTypeController> _logger;
