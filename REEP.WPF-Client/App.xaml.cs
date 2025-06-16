@@ -1,9 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using REEP.WPF_Client.Frontend.Views.AuthViews;
 using REEP.WPF_Client.Backend.Services.AuthServisec;
+using REEP.WPF_Client.Backend.Services.IApiServices.IAuthApiServices;
+using REEP.WPF_Client.Frontend.Common.ViewManagers.WindowManages;
+using REEP.WPF_Client.Frontend.ViewModels.AuthViewModels;
+using REEP.WPF_Client.Frontend.Views.AuthViews;
+using Refit;
 using System.Net.Http.Headers;
 using System.Windows;
-using REEP.WPF_Client.Frontend.ViewModels.AuthViewModels;
 
 
 namespace REEP.WPF_Client
@@ -14,7 +17,6 @@ namespace REEP.WPF_Client
     public partial class App : Application
     {
         public static IServiceProvider ServiceProvider { get; private set; }
-        public static string CurrentUsername { get; set; } // Храним имя пользователя
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -24,32 +26,33 @@ namespace REEP.WPF_Client
             ConfigureServices(services);
             ServiceProvider = services.BuildServiceProvider();
 
-            // Показываем окно входа
-            var loginWindow = ServiceProvider.GetRequiredService<AuthWindowView>();
-            loginWindow.DataContext = ServiceProvider.GetRequiredService<AuthWindowView>();
-            loginWindow.Show();
+            var authWindow = ServiceProvider.GetRequiredService<AuthWindowView>();
+            authWindow.DataContext = ServiceProvider.GetRequiredService<AuthViewModel>();
+            authWindow.Show();
         }
 
         private void ConfigureServices(IServiceCollection services)
         {
-            // Настройка HttpClient
-            services.AddHttpClient("ApiClient", client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:7110/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                    new MediaTypeWithQualityHeaderValue("application/json"));
-            });
+            // Настройка Refit
+            services.AddRefitClient<IAuthApi>()
+                .ConfigureHttpClient(c =>
+                {
+                    c.BaseAddress = new Uri("https://localhost:7110");
+                    c.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+                });
 
-            // Регистрация services
+            // Регистрация сервисов
             services.AddTransient<IAuthService, AuthService>();
-            services.AddTransient<IApiService, ApiService>();
+            services.AddSingleton<WindowManager>();
 
-            // Регистрация views
-            services.AddTransient<AuthWindowView>();
-
-            // Регистрация viewModels
+            // Регистрация ViewModels
             services.AddTransient<AuthViewModel>();
+            services.AddTransient<RegisterViewModel>();
+
+            // Регистрация Views
+            services.AddTransient<AuthWindowView>();
+            services.AddTransient<RegisterWindowView>();
         }
     }
 }

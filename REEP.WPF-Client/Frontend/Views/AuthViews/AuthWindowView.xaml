@@ -4,9 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:REEP.WPF_Client.Frontend.Views.AuthViews"
+        xmlns:converters="clr-namespace:REEP.WPF_Client.Frontend.Common.Converters"
         mc:Ignorable="d"
         Title="AuthWindowView" Height="450" Width="800">
-    <Grid>
-        
+
+    <Window.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="Email" Margin="0,10,0,5"/>
+            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Пароль" Margin="0,10,0,5"/>
+            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Content="Войти" 
+                    Command="{Binding LoginCommand}"
+                    Margin="0,20,0,0"
+                    Height="30"/>
+
+            <TextBlock Text="{Binding ErrorMessage}" 
+                       Foreground="Red"
+                       Margin="0,10,0,0"
+                       TextWrapping="Wrap"/>
+
+            <ProgressBar IsIndeterminate="True" 
+                         Height="10"
+                         Margin="0,10,0,0"
+                         Visibility="{Binding IsLoading,
+                         Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <TextBlock Margin="0,20,0,0">
+                <Hyperlink Command="{Binding SwitchToRegisterCommand}">
+                    Нет аккаунта? Зарегистрироваться
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </Window>

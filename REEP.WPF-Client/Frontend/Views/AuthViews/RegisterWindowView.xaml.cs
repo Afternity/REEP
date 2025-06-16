@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace REEP.WPF_Client.Frontend.Views.AuthViews
 {
     /// <summary>
-    /// Логика взаимодействия для LoginWindowView.xaml
+    /// Логика взаимодействия для RegisterWindowView.xaml
     /// </summary>
-    public partial class LoginWindowView : Window
+    public partial class RegisterWindowView : Window
     {
-        public LoginWindowView()
+        public RegisterWindowView()
         {
             InitializeComponent();
         }

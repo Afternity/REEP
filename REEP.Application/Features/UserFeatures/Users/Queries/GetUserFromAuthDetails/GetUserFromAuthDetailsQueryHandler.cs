@@ -5,23 +5,23 @@ using Microsoft.Extensions.Logging;
 using REEP.Application.Common.Exceptions;
 using REEP.Application.Interfaces.InterfaceDbContexts;
 
-namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserFromRegisterDetails
+namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserFromAuthDetails
 {
-    public class GetUserFromRegisterDetailsQueryHandler
-        : IRequestHandler<GetUserFromRegisterDetailsQuery, UserFromRegisterDetailsVm>
+    public class GetUserFromAuthDetailsQueryHandler
+        : IRequestHandler<GetUserFromAuthDetailsQuery, UserFromAuthDetailsVm>
     {
         private readonly IReepDbContext _context;
         private readonly IMapper _mapper;
-        private readonly ILogger<GetUserFromRegisterDetailsQueryHandler> _logger;
+        private readonly ILogger<GetUserFromAuthDetailsQueryHandler> _logger;
 
-        public GetUserFromRegisterDetailsQueryHandler(
+        public GetUserFromAuthDetailsQueryHandler(
             IReepDbContext context,
             IMapper mapper,
-            ILogger<GetUserFromRegisterDetailsQueryHandler> logger) =>
+            ILogger<GetUserFromAuthDetailsQueryHandler> logger) =>
             (_context, _mapper, _logger) = (context, mapper, logger);
 
-        public async Task<UserFromRegisterDetailsVm> Handle(
-            GetUserFromRegisterDetailsQuery request,
+        public async Task<UserFromAuthDetailsVm> Handle(
+            GetUserFromAuthDetailsQuery request,
             CancellationToken cancellationToken)
         {
             var entity = await _context.Users
@@ -35,7 +35,7 @@ namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserFromRegist
             if (entity == null)
                 throw new NotFoundException(nameof(entity), request.Password);
 
-            return _mapper.Map<UserFromRegisterDetailsVm>(entity);
+            return _mapper.Map<UserFromAuthDetailsVm>(entity);
         }
     }
 }

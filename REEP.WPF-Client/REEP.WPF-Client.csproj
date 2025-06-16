@@ -35,6 +35,7 @@
     <Folder Include="Backend\Services\IApiServices\IPassportApiServices\" />
     <Folder Include="Backend\Services\IApiServices\IUserApiServices\" />
     <Folder Include="Backend\Services\IApiServices\IWarrantyApiServies\" />
+    <Folder Include="Frontend\Common\ViewManagers\PageManages\" />
     <Folder Include="Frontend\ViewModels\CommonViewModels\" />
     <Folder Include="Frontend\ViewModels\ContractViewModels\" />
     <Folder Include="Frontend\ViewModels\MaintenanceViewModels\" />

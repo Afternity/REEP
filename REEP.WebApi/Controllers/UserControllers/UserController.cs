@@ -7,7 +7,7 @@ using REEP.Application.Features.UserFeatures.Users.Commands.SoftDeleteUser;
 using REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser;
 using REEP.Application.Features.UserFeatures.Users.Commands.UpdateUserFromProfile;
 using REEP.Application.Features.UserFeatures.Users.Queries.GetUserDetails;
-using REEP.Application.Features.UserFeatures.Users.Queries.GetUserFromRegisterDetails;
+using REEP.Application.Features.UserFeatures.Users.Queries.GetUserFromAuthDetails;
 using REEP.Application.Features.UserFeatures.Users.Queries.GetUserList;
 
 namespace REEP.WebApi.Controllers.UserControllers
@@ -89,7 +89,7 @@ namespace REEP.WebApi.Controllers.UserControllers
         [HttpGet("{email}:{password}")]
         public async Task<ActionResult<UserDetailsVm>> GetFromResiter(string email, string password)
         {
-            var query = new GetUserFromRegisterDetailsQuery()
+            var query = new GetUserFromAuthDetailsQuery()
             {
                 Email = email,
                 Password = password

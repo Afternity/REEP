@@ -1,44 +1,59 @@
-﻿using Duende.IdentityModel.Client;
-using System.Net.Http;
-using System.Net.Http.Json;
+﻿using REEP.WPF_Client.Backend.Models.AuthModels;
+using Refit;
+using REEP.WPF_Client.Backend.Services.IApiServices.IAuthApiServices;
 
 namespace REEP.WPF_Client.Backend.Services.AuthServisec
 {
     public class AuthService : IAuthService
     {
-        private readonly HttpClient _httpClient;
+        private readonly IAuthApi _authApi;
 
-        public AuthService(IHttpClientFactory httpClientFactory)
+        public AuthService(IAuthApi authApi)
         {
-            _httpClient = httpClientFactory.CreateClient("ApiClient");
+            _authApi = authApi;
         }
 
-        public async Task<bool> LoginAsync(string username, string password)
+        public async Task<bool> AuthAsync(string email, string password)
         {
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("api/auth/login",
-                    new { Username = username, Password = password });
-
-                if (response.IsSuccessStatusCode)
-                {
-                    App.CurrentUsername = username;
-                    return true;
-                }
-                return false;
+                var response = await _authApi.AuthAsync(email, password);
+                return response != null;
             }
-            catch
+            catch (ApiException)
             {
                 return false;
             }
         }
 
-        public async Task<bool> RegisterAsync(string username, string password)
+        public async Task<bool> RegisterAsync(
+            string firstName,
+            string secondName,
+            string lastName,
+            string email,
+            string otherContacts,
+            string password)
         {
-            var response = await _httpClient.PostAsJsonAsync("api/auth/register",
-                new { Username = username, Password = password });
+            try
+            {
+                var request = new CreateUserFromRegisterDto
+                {
+                    FirstName = firstName,
+                    SecondName = secondName,
+                    LastName = lastName,
+                    Email = email,
+                    OtherContacts = otherContacts,
+                    Password = password
+                };
 
-            return response.IsSuccessStatusCode;
+                await _authApi.RegisterAsync(request);
+                return true;
+            }
+            catch (ApiException ex)
+            {
+                // Можно добавить логирование
+                return false;
+            }
         }
-    }
+    } 
 }
