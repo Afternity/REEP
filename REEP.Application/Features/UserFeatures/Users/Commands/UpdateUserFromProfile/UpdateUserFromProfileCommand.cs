@@ -12,5 +12,6 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUserFromPr
         public string Email { get; set; } = null!;
         public string? OtherContacts { get; set; }
         public string Password { get; set; } = null!;
+        public string Type { get; set; } = null!;
     }
 }

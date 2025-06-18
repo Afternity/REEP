@@ -1,8 +1,8 @@
-﻿using REEP.WPF_Client.Backend.Models.AuthModels;
-using Refit;
-using REEP.WPF_Client.Backend.Services.IApiServices.IAuthApiServices;
+﻿using Refit;
+using REEP.WPF_Client.Backend.Services.IApiServices.IUserApiServices.IAuthApiServices;
+using REEP.WPF_Client.Backend.Models.UserModels.AuthModels;
 
-namespace REEP.WPF_Client.Backend.Services.AuthServisec
+namespace REEP.WPF_Client.Backend.Services.ApiServices.UserApiServices.AuthServices
 {
     public class AuthService : IAuthService
     {
@@ -17,8 +17,8 @@ namespace REEP.WPF_Client.Backend.Services.AuthServisec
         {
             try
             {
-                var response = await _authApi.AuthAsync(email, password);
-                return response != null;
+                App.CurrentUser = await _authApi.AuthAsync(email, password);
+                return App.CurrentUser != null;
             }
             catch (ApiException)
             {

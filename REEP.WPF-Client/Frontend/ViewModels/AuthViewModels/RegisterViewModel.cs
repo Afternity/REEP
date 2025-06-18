@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using REEP.WPF_Client.Backend.Services.AuthServisec;
-using REEP.WPF_Client.Frontend.Common.ViewManagers.WindowManages;
+using REEP.WPF_Client.Backend.Services.IApiServices.IUserApiServices.IAuthApiServices;
+using REEP.WPF_Client.Frontend.Common.ViewManagers;
 using REEP.WPF_Client.Frontend.Views.AuthViews;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace REEP.WPF_Client.Frontend.ViewModels.AuthViewModels
     public partial class RegisterViewModel : ObservableObject
     {
         private readonly IAuthService _authService;
-        private readonly WindowManager _windowManager;
+        private readonly WindowsManager _windowManager;
 
         [ObservableProperty]
         private string _firstName;
@@ -44,7 +44,7 @@ namespace REEP.WPF_Client.Frontend.ViewModels.AuthViewModels
         [ObservableProperty]
         private bool _isLoading;
 
-        public RegisterViewModel(IAuthService authService, WindowManager windowManager)
+        public RegisterViewModel(IAuthService authService, WindowsManager windowManager)
         {
             _authService = authService;
             _windowManager = windowManager;

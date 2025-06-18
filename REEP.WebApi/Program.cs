@@ -10,7 +10,6 @@ using REEP.Persistence.DependencyInjections;
 using REEP.WebApi;
 using REEP.WebApi.Middleware;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System.ComponentModel;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);

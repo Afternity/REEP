@@ -1,7 +1,7 @@
 ﻿using Refit;
-using REEP.WPF_Client.Backend.Models.AuthModels;
+using REEP.WPF_Client.Backend.Models.UserModels.AuthModels;
 
-namespace REEP.WPF_Client.Backend.Services.IApiServices.IAuthApiServices
+namespace REEP.WPF_Client.Backend.Services.IApiServices.IUserApiServices.IAuthApiServices
 {
     public interface IAuthApi
     {

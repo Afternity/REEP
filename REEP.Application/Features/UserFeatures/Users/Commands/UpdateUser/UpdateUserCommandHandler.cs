@@ -37,7 +37,6 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
             if (entity == null)
                 throw new NotFoundException(nameof(entity), request.Id);
 
-            entity.Id = request.Id;
             entity.FirstName = request.FirstName;
             entity.SecondName = request.SecondName;
             entity.LastName = request.LastName;
@@ -47,7 +46,7 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
             entity.UpdatedAt = DateTime.UtcNow;
             entity.UserTypeId = parent.Id;
             
-            await _context.Users.AddAsync(entity, cancellationToken);
+            _context.Users.Update(entity);
             await _context.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\MaintenanceControllers\" />
     <Folder Include="Controllers\PasspoetControllers\" />
   </ItemGroup>
 

@@ -30,6 +30,9 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUserFromPr
                 .NotEmpty();
             RuleFor(command => command.OtherContacts)
                 .MaximumLength(100);
+            RuleFor(command => command.Type)
+                .NotEmpty()
+                .MaximumLength(50);
         }
     }
 }

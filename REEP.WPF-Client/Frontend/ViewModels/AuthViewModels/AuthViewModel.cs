@@ -1,14 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using REEP.WPF_Client.Backend.Services.IApiServices.IAuthApiServices;
-using REEP.WPF_Client.Frontend.Common.ViewManagers.WindowManages;
+using REEP.WPF_Client.Backend.Services.IApiServices.IUserApiServices.IAuthApiServices;
+using REEP.WPF_Client.Frontend.Common.ViewManagers;
 
 namespace REEP.WPF_Client.Frontend.ViewModels.AuthViewModels
 {
     public partial class AuthViewModel : ObservableObject
     {
         private readonly IAuthService _authService;
-        private readonly WindowManager _windowManager;
+        private readonly WindowsManager _windowManager;
 
         [ObservableProperty]
         private string _email = "a89267939941@gmail.com";
@@ -22,7 +22,7 @@ namespace REEP.WPF_Client.Frontend.ViewModels.AuthViewModels
         [ObservableProperty]
         private bool _isLoading;
 
-        public AuthViewModel(IAuthService authService, WindowManager windowManager)
+        public AuthViewModel(IAuthService authService, WindowsManager windowManager)
         {
             _authService = authService;
             _windowManager = windowManager;
@@ -52,7 +52,8 @@ namespace REEP.WPF_Client.Frontend.ViewModels.AuthViewModels
                 if (success)
                 {
                     ErrorMessage = "Вход выполнен успешно!";
-                    // Здесь можно перейти к главному окну приложения
+
+                    _windowManager.StartWorkHomeCommonWidow();
                 }
                 else
                 {

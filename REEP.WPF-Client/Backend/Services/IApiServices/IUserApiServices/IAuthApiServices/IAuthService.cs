@@ -1,4 +1,4 @@
-﻿namespace REEP.WPF_Client.Backend.Services.IApiServices.IAuthApiServices
+﻿namespace REEP.WPF_Client.Backend.Services.IApiServices.IUserApiServices.IAuthApiServices
 {
     public interface IAuthService
     {

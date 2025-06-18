@@ -21,32 +21,18 @@
 
   <ItemGroup>
     <Folder Include="Backend\Models\ContractModels\" />
-    <Folder Include="Backend\Models\MaintenanceModels\" />
     <Folder Include="Backend\Models\PassportModels\" />
-    <Folder Include="Backend\Models\UserModels\" />
     <Folder Include="Backend\Models\WarrantyModels\" />
+    <Folder Include="Backend\Services\ApiServices\AuthApiServices\" />
     <Folder Include="Backend\Services\ApiServices\ContractApiServices\" />
-    <Folder Include="Backend\Services\ApiServices\MaintenanceApiServices\" />
     <Folder Include="Backend\Services\ApiServices\PassportApiServices\" />
-    <Folder Include="Backend\Services\ApiServices\UserApiServices\" />
     <Folder Include="Backend\Services\ApiServices\WarrantyApiServices\" />
     <Folder Include="Backend\Services\IApiServices\IContractApiServices\" />
-    <Folder Include="Backend\Services\IApiServices\IMaintenanceApiServices\" />
     <Folder Include="Backend\Services\IApiServices\IPassportApiServices\" />
-    <Folder Include="Backend\Services\IApiServices\IUserApiServices\" />
     <Folder Include="Backend\Services\IApiServices\IWarrantyApiServies\" />
-    <Folder Include="Frontend\Common\ViewManagers\PageManages\" />
-    <Folder Include="Frontend\ViewModels\CommonViewModels\" />
-    <Folder Include="Frontend\ViewModels\ContractViewModels\" />
-    <Folder Include="Frontend\ViewModels\MaintenanceViewModels\" />
     <Folder Include="Frontend\ViewModels\PassportViewModels\" />
-    <Folder Include="Frontend\ViewModels\UserViewModels\" />
     <Folder Include="Frontend\ViewModels\WarrantyViewModels\" />
-    <Folder Include="Frontend\Views\CommonViews\" />
-    <Folder Include="Frontend\Views\ContractViews\" />
-    <Folder Include="Frontend\Views\MaintenanceVeiws\" />
     <Folder Include="Frontend\Views\PassportViews\" />
-    <Folder Include="Frontend\Views\UserViews\" />
     <Folder Include="Frontend\Views\WarrantyViews\" />
   </ItemGroup>
 

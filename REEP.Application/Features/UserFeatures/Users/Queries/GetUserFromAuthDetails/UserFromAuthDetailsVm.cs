@@ -7,6 +7,7 @@ namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserFromAuthDe
     public class UserFromAuthDetailsVm
         : IMapWith<User>
     {
+        public Guid Id { get; set; }
         public string FirstName { get; set; } = null!;
         public string SecondName { get; set; } = null!;
         public string? LastName { get; set; }

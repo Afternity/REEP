@@ -28,7 +28,7 @@ namespace REEP.Application.Features.UserFeatures.Users.Queries.GetUserList
                 .Where(users => users.IsDeleted == request.IsDeleted)
                 .ProjectTo<UserLookupDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
-
+             
             return new UserListVm() { Users = entities };
         }
     }

@@ -22,7 +22,7 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUserFromPr
         {
             var parent = await _context.UserTypes
                 .FirstOrDefaultAsync(userType =>
-                    userType.Type == "Сотрудник",
+                    userType.Type == request.Type,
                     cancellationToken);
 
             if (parent == null)
@@ -46,6 +46,7 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUserFromPr
             entity.IsDeleted = false;
             entity.UserTypeId = parent.Id;
 
+            _context.Users.Update(entity);
             await _context.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
