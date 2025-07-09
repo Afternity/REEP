@@ -63,13 +63,34 @@ builder.Services.AddVersionedApiExplorer(options =>
 });
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>,
     ConfigureSwaggerOptions>();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    // Подключение XML-документации (если есть)
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath);
+});
 
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage(); // Показывает детали ошибок
+}
+else
+{
+    app.UseCustomExceptionHandler(); // Ваш кастомный обработчик
+}
+
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
+app.UseRouting();
+app.UseHttpsRedirection();
+app.UseCors("AllowAll");
+// app.UseAuthentication();
+// app.UseAuthorization();
+app.UseApiVersioning();
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
@@ -79,15 +100,8 @@ app.UseSwaggerUI(options =>
             $"/swagger/{description.GroupName}/swagger.json",
             $"REEP API {description.GroupName.ToUpper()}");
     }
-    options.RoutePrefix = "swagger"; 
+    options.RoutePrefix = string.Empty; // для того чтоб работал swagger при старте, до этого было options.RoutePrefix = "swagger";
 });
-app.UseCustomExceptionHandler();
-app.UseRouting();
-app.UseHttpsRedirection();
-app.UseCors("AllowAll");
-//app.UseAuthentication();
-//app.UseAuthorization();
-app.UseApiVersioning();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();

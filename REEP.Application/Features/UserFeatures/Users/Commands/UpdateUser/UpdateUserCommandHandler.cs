@@ -20,6 +20,8 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
         public async Task<Unit> Handle(UpdateUserCommand request,
             CancellationToken cancellationToken)
         {
+            _logger.LogInformation($"Вход в {nameof(UpdateUserCommand)}");
+
             var parent = await _context.UserTypes
                 .FirstOrDefaultAsync(userType =>
                     userType.Type == request.Type,
@@ -28,6 +30,7 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
             if (parent == null)
                 throw new NotFoundException(nameof(parent), request.Type);
 
+            _logger.LogInformation($"Найден {nameof(parent)}");
 
             var entity = await _context.Users
                 .FirstOrDefaultAsync(user =>
@@ -36,6 +39,8 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
 
             if (entity == null)
                 throw new NotFoundException(nameof(entity), request.Id);
+
+            _logger.LogInformation($"Найден {nameof(entity)}");
 
             entity.FirstName = request.FirstName;
             entity.SecondName = request.SecondName;
@@ -48,6 +53,8 @@ namespace REEP.Application.Features.UserFeatures.Users.Commands.UpdateUser
             
             _context.Users.Update(entity);
             await _context.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation($"Выход из {nameof(UpdateUserCommand)}");
 
             return Unit.Value;
         }

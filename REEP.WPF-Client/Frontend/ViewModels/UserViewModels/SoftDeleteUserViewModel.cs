@@ -51,7 +51,7 @@ namespace REEP.WPF_Client.Frontend.ViewModels.UserViewModels
         [RelayCommand]
         private async Task SoftDeleteUser()
         {
-            //if (SelectedUser == null) return;
+            if (SelectedUser == null) return;
 
             var message = SelectedUser.IsDeleted
                 ? "Вы уверены, что хотите пометить пользователя как удалённого?"

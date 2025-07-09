@@ -21,8 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Features\MaitenanceFeatures\MaintenanceRequests\Queries\" />
-    <Folder Include="Features\PassportFeatures\" />
-    <Folder Include="Features\WarrantyFeatures\" />
+    <Folder Include="Features\PassportFeatures\Equipments\Queries\GetEquipmentDetails\" />
   </ItemGroup>
 
 </Project>
